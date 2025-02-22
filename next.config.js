@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ['google.com', 'www.google.com'],
+  },
   rewrites: async () => {
     return [
       {
