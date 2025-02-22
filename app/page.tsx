@@ -1,7 +1,61 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
-export default function Home() {
+export default function Page() {
+  const categories = [
+    { icon: "trending-up", label: "SaaS" },
+    { icon: "cpu", label: "AI/ML" },
+    { icon: "cloud", label: "Cloud" },
+    { icon: "shield", label: "Security" },
+    { icon: "smartphone", label: "Mobile" },
+    { icon: "database", label: "Web3" },
+    { icon: "heart", label: "Health" },
+    { icon: "zap", label: "Climate" },
+    { icon: "shopping-cart", label: "E-commerce" },
+    { icon: "dollar-sign", label: "Fintech" },
+    { icon: "users", label: "B2B" },
+    { icon: "globe", label: "D2C" },
+  ]
+
+  const interviews = [
+    {
+      title: "Seed Stage Evaluation",
+      company: "General",
+      description: "Evaluate early-stage startups efficiently",
+      duration: "15m",
+      difficulty: "Standard",
+      bgColor: "bg-blue-50",
+      logo: "/placeholder.svg",
+    },
+    {
+      title: "Series A Deep Dive",
+      company: "Growth",
+      description: "Assess product-market fit and scalability",
+      duration: "30m",
+      difficulty: "Detailed",
+      bgColor: "bg-green-50",
+      logo: "/placeholder.svg",
+    },
+    {
+      title: "Technical Assessment",
+      company: "Tech",
+      description: "Evaluate technical founders and solutions",
+      duration: "25m",
+      difficulty: "Technical",
+      bgColor: "bg-purple-50",
+      logo: "/placeholder.svg",
+    },
+    {
+      title: "Market Analysis",
+      company: "Strategy",
+      description: "Test market understanding and positioning",
+      duration: "20m",
+      difficulty: "Strategic",
+      bgColor: "bg-red-50",
+      logo: "/placeholder.svg",
+    },
+  ]
+
   return (
     <div className="flex min-h-screen flex-col">
       <header className="fixed w-full bg-white/80 backdrop-blur-sm border-b z-50">
@@ -101,3 +155,4 @@ export default function Home() {
     </div>
   )
 }
+
