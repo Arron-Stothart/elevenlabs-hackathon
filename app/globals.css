@@ -93,3 +93,13 @@
 .mirror {
   transform: scaleX(-1);
 }
+
+/* Add these styles */
+body {
+  overflow: hidden;
+}
+
+.container {
+  height: 100vh;
+  overflow-y: auto;
+}

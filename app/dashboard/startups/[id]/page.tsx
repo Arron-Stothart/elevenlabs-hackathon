@@ -6,7 +6,7 @@ import "@blocknote/core/fonts/inter.css";
 import "@blocknote/mantine/style.css";
 import { startups } from "../../page";
 import { notFound } from "next/navigation";
-import * as shiki from 'shiki'
+import ChatSidebar from "@/components/ChatSidebar";
 
 export default function StartupPage({ params }: { params: { id: string } }) {
   const startup = startups.find((s) => s.id === params.id);
@@ -17,11 +17,6 @@ export default function StartupPage({ params }: { params: { id: string } }) {
 
   const editor = useCreateBlockNote({
     initialContent: [
-      {
-        type: "heading",
-        props: { level: 2 },
-        content: startup.name
-      },
       {
         type: "heading",
         props: { level: 3 },
@@ -61,8 +56,24 @@ export default function StartupPage({ params }: { params: { id: string } }) {
   });
 
   return (
-    <main className="container mx-auto p-4 md:p-6">
-      <BlockNoteView editor={editor} theme="light" />
-    </main>
+    <div className="flex">
+      <main className="flex-1 container p-4 md:p-6 ">
+        <div className="flex flex-col px-32">
+          <div className="flex flex-col mt-4 ml-[48px]">
+            <h1 className="text-3xl font-bold mb-4">{startup.name}</h1>
+            <div className="flex gap-2 mb-8 px-2">
+              <span className="px-3 py-1 border border-gray-300 text-gray-600 text-sm rounded-sm">
+                {new Date().toLocaleDateString()}
+              </span>
+              <span className="px-3 py-1 border border-gray-300 text-gray-600 text-sm rounded-sm">
+                Oliver Kicks
+              </span>
+            </div>
+          </div>
+          <BlockNoteView editor={editor} theme="light" />
+        </div>
+      </main>
+      <ChatSidebar />
+    </div>
   );
 }
