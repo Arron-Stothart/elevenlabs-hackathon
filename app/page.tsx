@@ -69,10 +69,12 @@ export default function StartPage() {
             exit={{ opacity: 0, y: -20 }}
             className="w-full max-w-md"
           >
-            <div className="bg-card p-8 rounded-lg shadow-lg">
-              <h2 className="text-2xl font-semibold mb-6">Meeting Complete</h2>
+            <div className="bg-card p-8 rounded-lg border">
+              <h2 className="text-2xl font-semibold mb-4">Thanks for your time!</h2>
+              <p className="text-muted-foreground mb-2">
+                The meeting has been completed successfully. We'll be in touch soon if theres a match.
+              </p>
               <p className="text-muted-foreground mb-6">
-                Enter your email to receive a summary of the call.
               </p>
               <form onSubmit={(e) => {
                 e.preventDefault()
@@ -88,7 +90,7 @@ export default function StartPage() {
                   required
                 />
                 <Button type="submit" className="w-full">
-                  Send Summary
+                  Confirm
                 </Button>
               </form>
             </div>
