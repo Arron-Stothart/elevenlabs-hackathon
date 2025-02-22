@@ -1,122 +1,124 @@
-import Image from "next/image";
-import Link from "next/link";
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Clock } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
 
-export default function Home() {
+export default function Page() {
+  const categories = [
+    { icon: "trending-up", label: "SaaS" },
+    { icon: "cpu", label: "AI/ML" },
+    { icon: "cloud", label: "Cloud" },
+    { icon: "shield", label: "Security" },
+    { icon: "smartphone", label: "Mobile" },
+    { icon: "database", label: "Web3" },
+    { icon: "heart", label: "Health" },
+    { icon: "zap", label: "Climate" },
+    { icon: "shopping-cart", label: "E-commerce" },
+    { icon: "dollar-sign", label: "Fintech" },
+    { icon: "users", label: "B2B" },
+    { icon: "globe", label: "D2C" },
+  ]
+
+  const interviews = [
+    {
+      title: "Seed Stage Evaluation",
+      company: "General",
+      description: "Evaluate early-stage startups efficiently",
+      duration: "15m",
+      difficulty: "Standard",
+      bgColor: "bg-blue-50",
+      logo: "/placeholder.svg",
+    },
+    {
+      title: "Series A Deep Dive",
+      company: "Growth",
+      description: "Assess product-market fit and scalability",
+      duration: "30m",
+      difficulty: "Detailed",
+      bgColor: "bg-green-50",
+      logo: "/placeholder.svg",
+    },
+    {
+      title: "Technical Assessment",
+      company: "Tech",
+      description: "Evaluate technical founders and solutions",
+      duration: "25m",
+      difficulty: "Technical",
+      bgColor: "bg-purple-50",
+      logo: "/placeholder.svg",
+    },
+    {
+      title: "Market Analysis",
+      company: "Strategy",
+      description: "Test market understanding and positioning",
+      duration: "20m",
+      difficulty: "Strategic",
+      bgColor: "bg-red-50",
+      logo: "/placeholder.svg",
+    },
+  ]
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing FastApi API&nbsp;
-          <Link href="/api/py/helloFastApi">
-            <code className="font-mono font-bold">api/index.py</code>
-          </Link>
-        </p>
-        <p className="fixed right-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing Next.js API&nbsp;
-          <Link href="/api/helloNextJs">
-            <code className="font-mono font-bold">app/api/helloNextJs</code>
-          </Link>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="min-h-screen bg-white">
+      <header className="border-b">
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-primary rounded-lg" />
+            <span className="font-semibold text-xl">Ventro</span>
+            <span className="text-sm text-muted-foreground">AI Pitch Evaluation</span>
+          </div>
+          <Button variant="outline">Sign in</Button>
         </div>
-      </div>
+      </header>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
+      <main className="container mx-auto px-4 py-12">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h1 className="text-5xl font-bold tracking-tight mb-4">Automate Your Startup Evaluation Process</h1>
+          <p className="text-xl text-muted-foreground">
+            Screen startup pitches efficiently with AI-powered evaluation tools. Get consistent assessments, detailed analytics, and voice-matched feedback powered by ElevenLabs.
           </p>
-        </a>
+        </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        <div className="mb-12 overflow-x-auto">
+          <div className="flex gap-8 min-w-max px-4">
+            {categories.map((category) => (
+              <Link
+                key={category.label}
+                href="#"
+                className="flex flex-col items-center gap-2 min-w-[80px] hover:text-primary transition-colors"
+              >
+                <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center">
+                  <span className="lucide" data-icon={category.icon}></span>
+                </div>
+                <span className="text-sm">{category.label}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {interviews.map((interview) => (
+            <div key={interview.title} className={`${interview.bgColor} rounded-xl p-6 space-y-4`}>
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+                <Image src={interview.logo || "/placeholder.svg"} alt={interview.company} width={32} height={32} />
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-1">{interview.title}</h3>
+                <p className="text-sm text-muted-foreground">{interview.description}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <Clock className="w-4 h-4 mr-1" />
+                  {interview.duration}
+                </div>
+                <Badge variant="secondary">{interview.difficulty}</Badge>
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
+    </div>
+  )
 }
+
