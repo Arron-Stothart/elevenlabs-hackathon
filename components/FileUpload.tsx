@@ -21,6 +21,7 @@ interface StructuredData {
   industry: string;
   has_revenue: boolean;
   has_users: boolean;
+  funding_round?: string;
 }
 
 interface FileUploadProps {
@@ -250,6 +251,26 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
                           value={editedData?.location || ''}
                           onChange={(e) => setEditedData(prev => prev ? {...prev, location: e.target.value} : null)}
                         />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label>Funding Round</Label>
+                        <div className="flex rounded-lg border p-1 space-x-1">
+                          {["Seed", "Series A", "Series B", "Series C+", "Other"].map((round) => (
+                            <button
+                              key={round}
+                              onClick={() => setEditedData(prev => prev ? {...prev, funding_round: round} : null)}
+                              className={cn(
+                                "flex-1 px-3 py-1.5 text-sm font-medium rounded-md transition-colors",
+                                editedData?.funding_round === round
+                                  ? "bg-primary text-primary-foreground"
+                                  : "hover:bg-muted"
+                              )}
+                            >
+                              {round}
+                            </button>
+                          ))}
+                        </div>
                       </div>
 
                       <div className="flex items-center justify-between">

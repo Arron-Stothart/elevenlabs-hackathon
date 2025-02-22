@@ -46,6 +46,7 @@ export default function StartPage() {
 
         {stage === "call" && (
           <motion.div
+            className="w-full h-full"
             key="call"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -56,9 +57,11 @@ export default function StartPage() {
         )}
       </AnimatePresence>
       
-      <div className="absolute bottom-4 text-sm text-muted-foreground text-center">
-        Powered by Ventro
-      </div>
+      {stage !== "call" && (
+        <div className="absolute bottom-4 text-sm text-muted-foreground text-center">
+          Powered by Ventro
+        </div>
+      )}
     </div>
   )
 }
