@@ -29,7 +29,7 @@ export default function CallerInfo({ companyName, onStartCall }: CallerInfoProps
       
       <div className="flex flex-col items-start justify-start gap-2 h-64 max-w-2xl"> 
         <h2 className="text-2xl font-semibold">
-          You will be speakingwith Oliver Kicks...
+          You will be speaking with Oliver Kicks...
         </h2>
       
         <p className="text-muted-foreground text-left">

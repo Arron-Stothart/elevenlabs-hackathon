@@ -55,22 +55,34 @@ async def websocket_endpoint(websocket: WebSocket):
         conversation.start_session()
         
         while True:
-            # Receive audio data from the client
-            audio_data = await websocket.receive_bytes()
-            
-            # Process the audio through the conversation
-            response = await conversation.process_audio(audio_data)
-            
-            # Send the response back to the client
-            await websocket.send_text(json.dumps({
-                "type": "response",
-                "text": response
-            }))
+            try:
+                # Receive message from the client
+                message = await websocket.receive()
+                
+                if message["type"] == "bytes":
+                    audio_data = message["bytes"]
+                    # Process the audio through the conversation
+                    response = await conversation.process_audio(audio_data)
+                    
+                    await websocket.send_json({
+                        "type": "response",
+                        "text": response
+                    })
+                elif message["type"] == "text":
+                    # Handle text messages if needed
+                    pass
+                    
+            except Exception as e:
+                print(f"Error processing message: {e}")
+                await websocket.send_json({
+                    "type": "error",
+                    "text": str(e)
+                })
             
     except Exception as e:
         print(f"Error in websocket: {e}")
-        await websocket.close()
     finally:
+        await websocket.close()
         conversation.end_session()
 
 
