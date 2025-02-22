@@ -27,13 +27,13 @@ export default function CallerInfo({ companyName, onStartCall }: CallerInfoProps
         />
       </div>
       
-      <div className="flex flex-col items-start justify-start gap-2 h-64 w-full"> 
+      <div className="flex flex-col items-start justify-start gap-2 h-64 max-w-2xl"> 
         <h2 className="text-2xl font-semibold">
-          Starting Call with Oliver Kicks...
+          You will be speakingwith Oliver Kicks...
         </h2>
       
         <p className="text-muted-foreground text-left">
-          Oliver Kicks is a Partner at Concept Ventures, focusing on pre-seed investments in Games, Entertainment, and AI. Previously the firm's first employee in 2019, he serves as a Board Observer for companies like Waypoint and Eleven Labs. Oliver brings experience as an angel and crypto investor, combining his professional expertise with his passion for gaming and technology.
+          Partner at Concept Ventures, focusing on pre-seed investments in Games, Entertainment, and AI. Previously the firm's first employee in 2019, he serves as a Board Observer for companies like Waypoint and Eleven Labs. Oliver brings experience as an angel and crypto investor, combining his professional expertise with his passion for gaming and technology.
         </p>
 
         <Button 
