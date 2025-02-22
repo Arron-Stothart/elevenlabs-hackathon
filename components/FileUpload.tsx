@@ -1,13 +1,15 @@
 "use client"
 
 import * as React from "react"
-import { Box, Upload, Presentation } from "lucide-react"
+import { Box, Upload, Presentation, Check } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 
 export default function FileUpload() {
   const [isDragging, setIsDragging] = React.useState(false)
   const [files, setFiles] = React.useState<File[]>([])
+  const [isUploaded, setIsUploaded] = React.useState(false)
 
   const onDragOver = React.useCallback((e: React.DragEvent) => {
     e.preventDefault()
@@ -28,6 +30,7 @@ export default function FileUpload() {
     
     if (pdfFiles.length > 0) {
       setFiles((prevFiles) => [...prevFiles, ...pdfFiles])
+      setIsUploaded(true)
     }
   }, [])
 
@@ -38,6 +41,7 @@ export default function FileUpload() {
 
       if (pdfFiles.length > 0) {
         setFiles((prevFiles) => [...prevFiles, ...pdfFiles])
+        setIsUploaded(true)
       }
     }
   }, [])
@@ -61,44 +65,74 @@ export default function FileUpload() {
           </Badge>
         </div>
 
-        <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center">
-          <Presentation className="h-6 w-6 text-muted-foreground" />
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={isUploaded ? "uploaded" : "upload"}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="flex flex-col items-center gap-6"
+          >
+            <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center">
+              {isUploaded ? (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", duration: 0.5 }}
+                >
+                  <Check className="h-6 w-6 text-green-500" />
+                </motion.div>
+              ) : (
+                <Presentation className="h-6 w-6 text-muted-foreground" />
+              )}
+            </div>
 
-        <div className="text-center">
-          <h2 className="text-xl font-semibold mb-2">Upload your Pitch Deck</h2>
-          <p className="text-sm text-muted-foreground mb-2">Oliver Kicks will review the deck before your personalised interview</p>
-        </div>
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              {isUploaded ? (
+                <>
+                  <h2 className="text-xl font-semibold mb-2">PDF Uploaded Successfully!</h2>
+                  <p className="text-sm text-muted-foreground mb-2">Your pitch deck is ready for review</p>
+                </>
+              ) : (
+                <>
+                  <h2 className="text-xl font-semibold mb-2">Upload your Pitch Deck</h2>
+                  <p className="text-sm text-muted-foreground mb-2">Oliver Kicks will review the deck before your personalised interview</p>
+                </>
+              )}
+            </motion.div>
 
-        <label
-          htmlFor="file-upload"
-          className="cursor-pointer inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-        >
-          <Upload className="h-4 w-4" />
-          Upload PDF files or drag & drop
-        </label>
+            {!isUploaded && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <label
+                  htmlFor="file-upload"
+                  className="cursor-pointer inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <Upload className="h-4 w-4" />
+                  Upload PDF files or drag & drop
+                </label>
 
-        <input 
-          id="file-upload" 
-          type="file" 
-          className="sr-only" 
-          accept=".pdf" 
-          multiple 
-          onChange={onFileSelect} 
-        />
-
-        {files.length > 0 && (
-          <div className="w-full mt-4">
-            <p className="text-sm font-medium mb-2">Selected files:</p>
-            <ul className="text-sm text-muted-foreground space-y-1">
-              {files.map((file, index) => (
-                <li key={index} className="truncate">
-                  {file.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+                <input 
+                  id="file-upload" 
+                  type="file" 
+                  className="sr-only" 
+                  accept=".pdf" 
+                  multiple 
+                  onChange={onFileSelect} 
+                />
+              </motion.div>
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   )
