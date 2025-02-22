@@ -1,6 +1,6 @@
-# VentroAI - AI-Powered VC Interviews
+# Ventro - AI-Powered VC Interviews
 
-VentroAI is a modern platform that enables VCs to conduct AI-powered interviews with startup founders using natural voice interactions. Built with Next.js, TypeScript, and the Eleven Labs API, it provides a seamless way to evaluate startup pitches and gather insights.
+Ventro helps VCs scale their initial screening process by creating AI versions of their investment team, allowing them to evaluate more founders through personalized pitch simulations. Each AI persona maintains the VC's unique investment thesis and communication style, complete with voice-matched responses powered by ElevenLabs.
 
 ## Features
 
