@@ -1,0 +1,140 @@
+{
+  "51cae877-2fca-41aa-8aa4-4ad5dcfd8841": {
+    "id": "51cae877-2fca-41aa-8aa4-4ad5dcfd8841",
+    "name": "Cleo",
+    "industry": "Financial Technology",
+    "location": "London, UK",
+    "fundingRound": "",
+    "summary": "An A.I. assistant for your money.",
+    "tags": [],
+    "pitchDate": "2025-02-22T22:40:02.214Z",
+    "structuredData": {
+      "company_description": "An A.I. assistant for your money.",
+      "has_revenue": false,
+      "has_users": true
+    },
+    "files": [
+      {
+        "name": "cleo.pdf",
+        "path": "/persistence/data/files/cleo.pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-22T22:40:02.288Z"
+      }
+    ]
+  },
+  "7d93f452-8e1b-4d8a-9f3c-6e915dd87b29": {
+    "id": "7d93f452-8e1b-4d8a-9f3c-6e915dd87b29",
+    "name": "Uber",
+    "industry": "Transportation",
+    "location": "San Francisco, USA",
+    "fundingRound": "Public",
+    "summary": "Global ride-hailing and delivery platform revolutionizing urban mobility.",
+    "tags": ["mobility", "transportation", "gig-economy"],
+    "pitchDate": "2025-01-15T18:30:00.000Z",
+    "structuredData": {
+      "company_description": "Platform connecting drivers and riders worldwide",
+      "has_revenue": true,
+      "has_users": true
+    },
+    "files": [
+      {
+        "name": "uber_deck.pdf",
+        "path": "/persistence/data/files/uber_deck.pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-01-15T18:30:00.000Z"
+      }
+    ]
+  },
+  "93ae5612-4f78-42db-9c1a-8f4e31c9b6d4": {
+    "id": "93ae5612-4f78-42db-9c1a-8f4e31c9b6d4",
+    "name": "ElevenLabs",
+    "industry": "Artificial Intelligence",
+    "location": "London, UK",
+    "fundingRound": "Series B",
+    "summary": "AI-powered voice synthesis and cloning technology.",
+    "tags": ["ai", "voice-tech", "deep-learning"],
+    "pitchDate": "2025-03-10T14:20:00.000Z",
+    "structuredData": {
+      "company_description": "Next-generation voice AI platform",
+      "has_revenue": true,
+      "has_users": true
+    },
+    "files": [
+      {
+        "name": "elevenlabs_pitch.pdf",
+        "path": "/persistence/data/files/elevenlabs_pitch.pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-03-10T14:20:00.000Z"
+      }
+    ]
+  },
+  "2b4f9c83-1e5d-4a67-b3d8-9f2e5c7a1234": {
+    "id": "2b4f9c83-1e5d-4a67-b3d8-9f2e5c7a1234",
+    "name": "GreenThumb",
+    "industry": "AgTech",
+    "location": "Amsterdam, Netherlands",
+    "fundingRound": "Seed",
+    "summary": "Smart vertical farming solutions for urban environments.",
+    "tags": ["agriculture", "sustainability", "iot"],
+    "pitchDate": "2025-04-01T09:15:00.000Z",
+    "structuredData": {
+      "company_description": "IoT-enabled vertical farming technology",
+      "has_revenue": false,
+      "has_users": true
+    },
+    "files": [
+      {
+        "name": "greenthumb_seed.pdf",
+        "path": "/persistence/data/files/greenthumb_seed.pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-04-01T09:15:00.000Z"
+      }
+    ]
+  },
+  "5e8d7f1a-9b2c-4d3e-8f6a-1234abcd5678": {
+    "id": "5e8d7f1a-9b2c-4d3e-8f6a-1234abcd5678",
+    "name": "QuantumLeap",
+    "industry": "Quantum Computing",
+    "location": "Toronto, Canada",
+    "fundingRound": "Series A",
+    "summary": "Quantum computing solutions for financial modeling.",
+    "tags": ["quantum", "fintech", "computing"],
+    "pitchDate": "2025-03-20T11:30:00.000Z",
+    "structuredData": {
+      "company_description": "Quantum algorithms for financial optimization",
+      "has_revenue": true,
+      "has_users": false
+    },
+    "files": [
+      {
+        "name": "quantum_pitch.pdf",
+        "path": "/persistence/data/files/quantum_pitch.pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-03-20T11:30:00.000Z"
+      }
+    ]
+  },
+  "9c4e6d2b-7a1f-4e8d-b9c3-5678efgh9012": {
+    "id": "9c4e6d2b-7a1f-4e8d-b9c3-5678efgh9012",
+    "name": "MindfulAI",
+    "industry": "Healthcare",
+    "location": "Stockholm, Sweden",
+    "fundingRound": "Pre-seed",
+    "summary": "AI-powered mental health monitoring and support.",
+    "tags": ["healthcare", "ai", "wellness"],
+    "pitchDate": "2025-02-28T16:45:00.000Z",
+    "structuredData": {
+      "company_description": "Mental health monitoring through AI",
+      "has_revenue": false,
+      "has_users": false
+    },
+    "files": [
+      {
+        "name": "mindful_deck.pdf",
+        "path": "/persistence/data/files/mindful_deck.pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-28T16:45:00.000Z"
+      }
+    ]
+  }
+}

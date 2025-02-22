@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
+import { getAllStartups } from "@/persistence/storage"
 
 export interface Startup {
   id: string
@@ -78,7 +79,18 @@ export const startups: Startup[] = [
   }
 ]
 
-export default function StartupsPage() {
+export default async function StartupsPage() {
+  const startups = await getAllStartups();
+  
+  const placeholderStartup: Partial<Startup> = {
+    industry: "Unspecified",
+    location: "Location TBD",
+    fundingRound: "Unknown",
+    summary: "Details coming soon...",
+    tags: ["Unclassified"],
+    pitchDate: new Date().toISOString(),
+  };
+
   return (
     <main className="container mx-auto p-4 md:p-6">
       <Card className="mb-8 shadow-none border">
@@ -113,59 +125,66 @@ export default function StartupsPage() {
       </Card>
 
       <div className="grid gap-6 md:grid-cols-2">
-        {startups.map((startup) => (
-          <Link 
-            href={`/dashboard/startups/${startup.id}`} 
-            key={startup.id}
-            className="group"
-          >
-            <Card className="overflow-hidden shadow-none border hover:bg-gray-50 transition-colors">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h2 className="text-lg font-medium">{startup.name}</h2>
-                    <div className="text-sm text-muted-foreground">
-                      {new Date(startup.pitchDate).toLocaleDateString()}
+        {startups.map((startup) => {
+          const startupWithDefaults = {
+            ...placeholderStartup,
+            ...startup
+          };
+          
+          return (
+            <Link 
+              href={`/dashboard/startups/${startupWithDefaults.id}`} 
+              key={startupWithDefaults.id}
+              className="group"
+            >
+              <Card className="overflow-hidden shadow-none border hover:bg-gray-50 transition-colors">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h2 className="text-lg font-medium">{startupWithDefaults.name}</h2>
+                      <div className="text-sm text-muted-foreground">
+                        {new Date(startupWithDefaults.pitchDate).toLocaleDateString()}
+                      </div>
+                    </div>
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <svg 
+                        width="24" 
+                        height="24" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round"
+                        className="text-gray-400"
+                      >
+                        <path d="M5 12h14"/>
+                        <path d="m12 5 7 7-7 7"/>
+                      </svg>
                     </div>
                   </div>
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                      className="text-gray-400"
-                    >
-                      <path d="M5 12h14"/>
-                      <path d="m12 5 7 7-7 7"/>
-                    </svg>
+
+                  <div className="mt-4">
+                    <p className="text-muted-foreground">{startupWithDefaults.summary}</p>
                   </div>
-                </div>
 
-                <div className="mt-4">
-                  <p className="text-muted-foreground">{startup.summary}</p>
-                </div>
-
-                <div className="mt-6">
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline" className="bg-blue-50">
-                      {startup.fundingRound}
-                    </Badge>
-                    {startup.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">
-                        {tag}
+                  <div className="mt-6">
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline" className="bg-blue-50">
+                        {startupWithDefaults.fundingRound || "Unspecified"}
                       </Badge>
-                    ))}
+                      {startupWithDefaults.tags.map((tag) => (
+                        <Badge key={tag} variant="secondary">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
+                </CardContent>
+              </Card>
+            </Link>
+          );
+        })}
       </div>
     </main>
   )
