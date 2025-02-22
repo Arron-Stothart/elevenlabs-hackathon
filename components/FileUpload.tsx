@@ -195,92 +195,86 @@ export default function FileUpload() {
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-4 text-left space-y-4 w-full max-w-md"
+                    className="mt-4 text-left w-full max-w-5xl"
                   >
-                    <div className="space-y-2">
-                      <Label htmlFor="company_name" className="text-sm text-muted-foreground">
-                        Company Name
-                      </Label>
-                      <Input
-                        id="company_name"
-                        value={editedData?.company_name || ''}
-                        onChange={(e) => setEditedData(prev => prev ? {...prev, company_name: e.target.value} : null)}
-                        className="border-0 border-b border-muted-foreground/20 rounded-none px-0 py-0 h-7 focus-visible:ring-0 focus-visible:border-b-2 focus-visible:border-primary transition-colors bg-transparent"
-                      />
-                    </div>
+                    <div className="bg-card border rounded-lg shadow-sm p-6">
+                      <div className="space-y-6">
+                        <div className="space-y-2">
+                          <Label htmlFor="company_name">
+                            Company Name
+                          </Label>
+                          <Input
+                            id="company_name"
+                            value={editedData?.company_name || ''}
+                            onChange={(e) => setEditedData(prev => prev ? {...prev, company_name: e.target.value} : null)}
+                          />
+                        </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="company_description" className="text-sm text-muted-foreground">
-                        Company Description
-                      </Label>
-                      <Textarea
-                        id="company_description"
-                        value={editedData?.company_description || ''}
-                        onChange={(e) => setEditedData(prev => prev ? {...prev, company_description: e.target.value} : null)}
-                        className="border-0 border-b border-muted-foreground/20 rounded-none px-0 py-0 focus-visible:ring-0 focus-visible:border-b-2 focus-visible:border-primary transition-colors bg-transparent resize-none line-clamp-3 min-h-0 h-7 overflow-y-hidden"
-                        style={{
-                          height: '1.75rem'
-                        }}
-                        onInput={(e) => {
-                          const target = e.target as HTMLTextAreaElement;
-                          target.style.height = '1.75rem';
-                          target.style.height = Math.min(target.scrollHeight, 84) + 'px';
-                        }}
-                      />
-                    </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="company_description">
+                            Company Description
+                          </Label>
+                          <Textarea
+                            id="company_description"
+                            value={editedData?.company_description || ''}
+                            onChange={(e) => setEditedData(prev => prev ? {...prev, company_description: e.target.value} : null)}
+                            className="resize-none"
+                            rows={3}
+                          />
+                        </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="industry" className="text-sm text-muted-foreground">
-                        Industry
-                      </Label>
-                      <Input
-                        id="industry"
-                        value={editedData?.industry || ''}
-                        onChange={(e) => setEditedData(prev => prev ? {...prev, industry: e.target.value} : null)}
-                        className="border-0 border-b border-muted-foreground/20 rounded-none px-0 py-0 h-7 focus-visible:ring-0 focus-visible:border-b-2 focus-visible:border-primary transition-colors bg-transparent"
-                      />
-                    </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="industry">
+                            Industry
+                          </Label>
+                          <Input
+                            id="industry"
+                            value={editedData?.industry || ''}
+                            onChange={(e) => setEditedData(prev => prev ? {...prev, industry: e.target.value} : null)}
+                          />
+                        </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="location" className="text-sm text-muted-foreground">
-                        Location
-                      </Label>
-                      <Input
-                        id="location"
-                        value={editedData?.location || ''}
-                        onChange={(e) => setEditedData(prev => prev ? {...prev, location: e.target.value} : null)}
-                        className="border-0 border-b border-muted-foreground/20 rounded-none px-0 py-0 h-7 focus-visible:ring-0 focus-visible:border-b-2 focus-visible:border-primary transition-colors bg-transparent"
-                      />
-                    </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="location">
+                            Location
+                          </Label>
+                          <Input
+                            id="location"
+                            value={editedData?.location || ''}
+                            onChange={(e) => setEditedData(prev => prev ? {...prev, location: e.target.value} : null)}
+                          />
+                        </div>
 
-                    <div className="flex items-center justify-between pt-4">
-                      <div className="flex items-center space-x-3">
-                        <Checkbox
-                          id="has_revenue"
-                          checked={editedData?.has_revenue || false}
-                          onCheckedChange={(checked) => setEditedData(prev => prev ? {...prev, has_revenue: checked as boolean} : null)}
-                          className="h-5 w-5 rounded-full border-muted-foreground/20 data-[state=checked]:border-primary data-[state=checked]:bg-primary"
-                        />
-                        <Label htmlFor="has_revenue" className="text-sm text-muted-foreground">
-                          Has Revenue
-                        </Label>
-                      </div>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-3">
+                            <Checkbox
+                              id="has_revenue"
+                              checked={editedData?.has_revenue || false}
+                              onCheckedChange={(checked) => setEditedData(prev => prev ? {...prev, has_revenue: checked as boolean} : null)}
+                              className="rounded-full"
+                            />
+                            <Label htmlFor="has_revenue">
+                              Has Revenue
+                            </Label>
+                          </div>
 
-                      <div className="flex items-center space-x-3">
-                        <Checkbox
-                          id="has_users"
-                          checked={editedData?.has_users || false}
-                          onCheckedChange={(checked) => setEditedData(prev => prev ? {...prev, has_users: checked as boolean} : null)}
-                          className="h-5 w-5 rounded-full border-muted-foreground/20 data-[state=checked]:border-primary data-[state=checked]:bg-primary"
-                        />
-                        <Label htmlFor="has_users" className="text-sm text-muted-foreground">
-                          Has Active Users
-                        </Label>
+                          <div className="flex items-center space-x-3">
+                            <Checkbox
+                              id="has_users"
+                              checked={editedData?.has_users || false}
+                              onCheckedChange={(checked) => setEditedData(prev => prev ? {...prev, has_users: checked as boolean} : null)}
+                              className="rounded-full"
+                            />
+                            <Label htmlFor="has_users">
+                              Has Active Users
+                            </Label>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
                     <Button 
-                      className="w-full mt-8" 
+                      className="w-full mt-6" 
                       onClick={handleConfirm}
                       variant="default"
                     >
