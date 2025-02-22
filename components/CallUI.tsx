@@ -1,13 +1,28 @@
 "use client"
 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { PhoneOff, Mic, Video } from "lucide-react"
 
 export default function CallUI() {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const websocketRef = useRef<WebSocket | null>(null)
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
+  const [isRecording, setIsRecording] = useState(false)
 
   useEffect(() => {
+    // Create WebSocket connection
+    websocketRef.current = new WebSocket('ws://localhost:8000/ws/chat')
+    
+    websocketRef.current.onmessage = (event) => {
+      const response = JSON.parse(event.data)
+      if (response.type === 'response') {
+        console.log('Agent response:', response.text)
+        // Here you can handle the agent's response
+        // For example, play it through audio or display it
+      }
+    }
+
     // Request access to webcam
     async function setupWebcam() {
       try {
@@ -28,12 +43,37 @@ export default function CallUI() {
 
     // Cleanup function to stop all tracks when component unmounts
     return () => {
+      websocketRef.current?.close()
       if (videoRef.current?.srcObject) {
         const tracks = (videoRef.current.srcObject as MediaStream).getTracks()
         tracks.forEach(track => track.stop())
       }
     }
   }, [])
+
+  const startRecording = async () => {
+    if (!videoRef.current?.srcObject) return
+    
+    const stream = videoRef.current.srcObject as MediaStream
+    const mediaRecorder = new MediaRecorder(stream, {
+      mimeType: 'audio/webm'
+    })
+
+    mediaRecorder.ondataavailable = (event) => {
+      if (event.data.size > 0 && websocketRef.current?.readyState === WebSocket.OPEN) {
+        websocketRef.current.send(event.data)
+      }
+    }
+
+    mediaRecorder.start(100) // Collect data every 100ms
+    mediaRecorderRef.current = mediaRecorder
+    setIsRecording(true)
+  }
+
+  const stopRecording = () => {
+    mediaRecorderRef.current?.stop()
+    setIsRecording(false)
+  }
 
   return (
     <div className="fixed inset-0 bg-[url('/oliver-call.jpg')] bg-cover bg-center bg-no-repeat before:content-[''] before:absolute before:inset-0 before:backdrop-blur-sm before:bg-black/40">
@@ -68,7 +108,8 @@ export default function CallUI() {
         <Button 
           variant="secondary" 
           size="icon"
-          className="rounded-full h-12 w-12"
+          className={`rounded-full h-12 w-12 ${isRecording ? 'bg-red-500' : ''}`}
+          onClick={() => isRecording ? stopRecording() : startRecording()}
         >
           <Mic className="h-5 w-5" />
         </Button>

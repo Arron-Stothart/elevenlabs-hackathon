@@ -6,3 +6,5 @@ python-dotenv
 py-zerox==0.0.7
 langchain-google-genai==2.0.7
 python-multipart
+python-socketio==5.7
+websockets

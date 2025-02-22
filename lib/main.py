@@ -1,5 +1,4 @@
 import os
-import signal
 
 from dotenv import load_dotenv
 from elevenlabs.client import ElevenLabs
@@ -79,8 +78,7 @@ conversation = Conversation(
     # callback_latency_measurement=lambda latency: print(f"Latency: {latency}ms"),
 )
 
-if __name__ == "__main__":
-    conversation.start_session()
-    signal.signal(signal.SIGINT, lambda sig, frame: conversation.end_session())
-    conversation_id = conversation.wait_for_session_end()
-    print(f"Conversation ID: {conversation_id}")
+async def process_audio(audio_data: bytes):
+    # Process the audio data and get response
+    response = await conversation.process_audio(audio_data)
+    return response
