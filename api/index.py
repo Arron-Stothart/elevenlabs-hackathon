@@ -5,6 +5,7 @@ from typing import Dict
 import asyncio
 from lib.parse import parse_pdf, get_structured_values
 from lib.main import conversation, dynamic_vars
+import json
 
 ### Create FastAPI instance with custom docs and openapi url
 app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
@@ -64,8 +65,12 @@ async def websocket_endpoint(websocket: WebSocket):
                         "text": response
                     })
                 elif message["type"] == "text":
-                    # Handle text messages if needed
-                    pass
+                    # Parse the text message
+                    data = json.loads(message["text"])
+                    if data["type"] == "end_session":
+                        # End the conversation session
+                        conversation.end_session()
+                        break
                     
             except Exception as e:
                 print(f"Error processing message: {e}")
@@ -77,5 +82,5 @@ async def websocket_endpoint(websocket: WebSocket):
     except Exception as e:
         print(f"Error in websocket: {e}")
     finally:
-        await websocket.close()
+        # Make sure the conversation session is ended
         conversation.end_session()

@@ -57,7 +57,7 @@ async def parse_pdf(filename: str) -> str:
     #     "has_revenue": True,
     #     "has_users": True,
     # }
-    # # Convert the dictionary to a formatted string
+    # Convert the dictionary to a formatted string
     return formatted_text
 
 

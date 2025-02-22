@@ -12,6 +12,28 @@ export default function CallUI({ onComplete }: CallUIProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const websocketRef = useRef<WebSocket | null>(null)
 
+  // Helper function to cleanup connections
+  const cleanup = async () => {
+    // Send end session message and wait briefly for it to be sent
+    if (websocketRef.current?.readyState === WebSocket.OPEN) {
+      websocketRef.current.send(JSON.stringify({ type: "end_session" }));
+      // Small delay to allow message to be sent
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    
+    // Close websocket if open
+    if (websocketRef.current) {
+      websocketRef.current.close();
+      websocketRef.current = null;
+    }
+    
+    // Stop video tracks
+    if (videoRef.current?.srcObject) {
+      const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
+      tracks.forEach(track => track.stop());
+    }
+  }
+
   useEffect(() => {
     // Create WebSocket connection
     websocketRef.current = new WebSocket('ws://localhost:8000/ws/chat')
@@ -42,14 +64,14 @@ export default function CallUI({ onComplete }: CallUIProps) {
     setupWebcam()
 
     // Cleanup function
-    return () => {
-      websocketRef.current?.close()
-      if (videoRef.current?.srcObject) {
-        const tracks = (videoRef.current.srcObject as MediaStream).getTracks()
-        tracks.forEach(track => track.stop())
-      }
-    }
+    return cleanup
   }, [])
+
+  // Make handleComplete async to handle the cleanup
+  const handleComplete = async () => {
+    await cleanup();
+    onComplete();
+  }
 
   return (
     <div className="fixed inset-0 bg-[url('/oliver-call.jpg')] bg-cover bg-center bg-no-repeat before:content-[''] before:absolute before:inset-0 before:backdrop-blur-sm before:bg-black/40">
@@ -78,6 +100,7 @@ export default function CallUI({ onComplete }: CallUIProps) {
           variant="destructive" 
           size="icon"
           className="rounded-full h-12 w-12"
+          onClick={async () => await cleanup()}
         >
           <PhoneOff className="h-5 w-5" />
         </Button>
@@ -98,7 +121,7 @@ export default function CallUI({ onComplete }: CallUIProps) {
         <Button 
           variant="secondary"
           className="rounded-full h-12"
-          onClick={onComplete}
+          onClick={handleComplete}
         >
           Complete Call
         </Button>
