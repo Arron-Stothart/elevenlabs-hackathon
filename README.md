@@ -1,4 +1,4 @@
-# Ventro - AI-Powered VC Interviews
+# Ventro - Never Miss a Deal
 
 Ventro helps VCs scale their initial screening process by creating AI versions of their investment team, allowing them to evaluate more founders through personalized pitch simulations. Each AI persona maintains the VC's unique investment thesis and communication style, complete with voice-matched responses powered by ElevenLabs.
 
@@ -21,8 +21,8 @@ Ventro helps VCs scale their initial screening process by creating AI versions o
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/ventroai.git
-   cd ventroai
+   git clone https://github.com/yourusername/ventro.git
+   cd ventro
    ```
 
 2. Install dependencies:
@@ -42,14 +42,6 @@ Ventro helps VCs scale their initial screening process by creating AI versions o
    ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Usage
-
-1. Navigate to the interview page
-2. Click "Start" to begin recording your response
-3. Speak clearly into your microphone
-4. Click "Stop" when you're done
-5. The AI interviewer will respond and move to the next question
 
 ## Tech Stack
 
