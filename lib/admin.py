@@ -4,12 +4,19 @@ import os
 from elevenlabs import ElevenLabs
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
+from posthog.ai.langchain import CallbackHandler
+from langchain_core.prompts import ChatPromptTemplate
+import posthog
 
 load_dotenv()
 
 client = ElevenLabs(
     api_key=os.getenv("ELEVENLABS_API_KEY"),
 )
+
+posthog.project_api_key = "phc_AVLiYfG0b9qFCkIPAuRPfQJ2IkxlP8Im6mhyjtaIv6p"
+posthog.host = "https://us.i.posthog.com"
+callback_handler = CallbackHandler(client=posthog, privacy_mode=False)  # optional
 
 
 def get_gemini_2_0_flash():
@@ -28,23 +35,35 @@ def get_conversation(conversation_id: str):
         conversation_id=conversation_id,
     )
     transcript = conversation.transcript
-    simplified_transcript = [
-        {
-            "role": item.role,
-            "message": item.message,
-        }
-        for item in transcript
-    ]
+    simplified_transcript = json.dumps(
+        [
+            {
+                "role": item.role,
+                "message": item.message,
+            }
+            for item in transcript
+        ]
+    )
 
     return conversation, transcript, simplified_transcript
 
 
-def generate_notes(simplified_transcript: list[dict]):
+def generate_notes(simplified_transcript: str, file_name: str):
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(script_dir, "..", "output_test", file_name)
+
+    # Verify file exists
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"PDF file not found at: {file_path}")
+
+    pitch_deck_markdown = open(file_path).read()
+
     system_prompt = f"""
     This is the transcript of a conversation between a founder and a VC:
     {simplified_transcript}
 
-    You are a master note taker, specializing in summarizing conversations like a VC.
+    This is the parsed pitch deck of the company:
+    {pitch_deck_markdown}
     """
 
     user_prompt = """
@@ -98,15 +117,23 @@ def generate_notes(simplified_transcript: list[dict]):
 
     Mention any additional key insights or red flags from the conversation. If any sections above aren't covered in the conversation, omit them.
 
-    Format as a clear, bulleted list in markdown. Provide only factual information without commentary.
+    Respond with the final output of the notes only do not add any commentary or anything else.
     """
+
+    # Save prompts to files for debugging
+    with open("system_prompt.txt", "w") as f:
+        f.write(system_prompt)
+    with open("user_prompt.txt", "w") as f:
+        f.write(user_prompt)
 
     prompts = [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_prompt},
     ]
 
-    notes = get_gemini_2_0_flash().invoke(prompts)
+    notes = get_gemini_2_0_flash().invoke(
+        prompts, config={"callbacks": [callback_handler]}
+    )
     return notes.content
 
 
@@ -131,7 +158,9 @@ def chat_to_transcript(simplified_transcript: str, user_prompt: str):
         {"role": "user", "content": user_prompt},
     ]
 
-    answer = get_gemini_2_0_flash().invoke(prompts)
+    answer = get_gemini_2_0_flash().invoke(
+        prompts, config={"callbacks": [callback_handler]}
+    )
     return answer.content
 
 
@@ -144,7 +173,7 @@ if __name__ == "__main__":
     with open(save_path, "w") as f:
         json.dump(conversation_dict, f, indent=2)
 
-    notes = generate_notes(simplified_transcript)
+    notes = generate_notes(simplified_transcript, "cleo.md")
     with open("notes.txt", "w") as f:
         f.write(notes)
 
