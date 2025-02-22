@@ -35,33 +35,42 @@ def get_gemini_2_0_flash():
 
 # Define main async entrypoint
 async def parse_pdf(filename: str) -> str:
-    # Update path to be relative to script location
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(script_dir, "..", "uploads", filename)
-    output_dir = os.path.join(script_dir, "..", "output_test")
+    # # Update path to be relative to script location
+    # script_dir = os.path.dirname(os.path.abspath(__file__))
+    # file_path = os.path.join(script_dir, "..", "uploads", filename)
+    # output_dir = os.path.join(script_dir, "..", "output_test")
 
-    # Verify file exists
-    if not os.path.exists(file_path):
-        raise FileNotFoundError(f"PDF file not found at: {file_path}")
+    # # Verify file exists
+    # if not os.path.exists(file_path):
+    #     raise FileNotFoundError(f"PDF file not found at: {file_path}")
 
-    result = await zerox(
-        cleanup=True,  # Clean temp files after processing
-        concurrency=10,  # Number of concurrent processes
-        file_path=file_path,  # Path to PDF
-        maintain_format=False,  # Don't maintain format between pages
-        model="gemini/gemini-2.0-flash",  # Using Gemini model defined above
-        output_dir=output_dir,  # Where to save output
-        temp_dir=None,  # Use system default temp dir
-        custom_system_prompt=None,  # Override zerox system prompt
-        select_pages=None,  # pages list
-    )
+    # result = await zerox(
+    #     cleanup=True,  # Clean temp files after processing
+    #     concurrency=10,  # Number of concurrent processes
+    #     file_path=file_path,  # Path to PDF
+    #     maintain_format=False,  # Don't maintain format between pages
+    #     model="gemini/gemini-2.0-flash",  # Using Gemini model defined above
+    #     output_dir=output_dir,  # Where to save output
+    #     temp_dir=None,  # Use system default temp dir
+    #     custom_system_prompt=None,  # Override zerox system prompt
+    #     select_pages=None,  # pages list
+    # )
 
-    # Format the pages with their index
-    formatted_text = ""
-    for page in result.pages:
-        formatted_text += f"#Page {page.page} {{\n{page.content}}}\n\n"
+    # # Format the pages with their index
+    # formatted_text = ""
+    # for page in result.pages:
+    #     formatted_text += f"#Page {page.page} {{\n{page.content}}}\n\n"
 
-    return formatted_text
+    data = {
+        "company_name": "Cleo",
+        "company_description": "Cleo is a financial wellness platform that helps people manage their money better.",
+        "location": "London, UK",
+        "industry": "Financial Wellness",
+        "has_revenue": True,
+        "has_users": True,
+    }
+    # Convert the dictionary to a formatted string
+    return str(data)
 
 
 def get_structured_values(formatted_text):
