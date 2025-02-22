@@ -1,0 +1,33 @@
+*   **TLDR:** Cleo is an AI-powered personal finance advisor targeting millennials, offering personalized advice and budgeting tools through a chat interface integrated with open banking.
+*   **Company Name:** Cleo
+*   **Company Description:** An intelligent personal financial advisor that helps millennials manage their finances through a chat interface.
+*   **Location:** Not mentioned
+*   **Industry:** Fintech
+*   **Has Revenue:** Not mentioned
+*   **Has Users:** Not mentioned
+
+*   **Market:**
+    *   **Market size and opportunity:** Large market of millennials dissatisfied with traditional banking. 73% would rather bank with Google.
+    *   **Competitive landscape:** Traditional banks.
+    *   **Business model and revenue streams:** Not mentioned
+
+*   **Customers:**
+    *   **Target customer segments:** Millennials
+    *   **Customer pain points:** Lack of trust in banks, inconvenient services, extortionate fees, lack of control.
+    *   **Value proposition:** Trustworthy, user-friendly alternative to traditional banking with personalized financial advice and greater control.
+
+*   **Traction:**
+    *   **Current metrics and growth:** Not mentioned
+    *   **Financial projections:** Not mentioned
+    *   **Funding history and current ask:** Not mentioned
+
+*   **Team:**
+    *   **Founders background:** Barney (Founder)
+    *   **Founders personality:** Not mentioned
+    *   **Founders goals:** Not mentioned
+
+*   **Key Insights/Takeaways:**
+    *   Cleo uses open banking to access user transaction data.
+    *   Cleo focuses on budgeting and helping users stay on top of their finances.
+    *   Cleo integrates with Nutmeg via API for savings/investment options.
+    *   Personalized advice is delivered in a conversational, millennial-friendly style within a chat interface.

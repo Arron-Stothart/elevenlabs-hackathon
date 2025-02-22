@@ -10,18 +10,6 @@ load_dotenv()
 os.environ["GEMINI_API_KEY"] = os.getenv("GEMINI_API_KEY")
 
 
-@lru_cache()
-def get_gemini_1_5_pro():
-    return ChatGoogleGenerativeAI(
-        model="gemini-1.5-pro",
-        temperature=0,
-        max_tokens=None,
-        timeout=None,
-        max_retries=3,
-        api_key=os.environ.get("GEMINI_API_KEY"),
-    )
-
-
 def get_gemini_2_0_flash():
     return ChatGoogleGenerativeAI(
         model="gemini-2.0-flash",
@@ -129,7 +117,7 @@ def get_company_facts(formatted_text):
     ]
 
     facts = get_gemini_2_0_flash().invoke(prompts)
-    return facts
+    return facts.content
 
 
 if __name__ == "__main__":

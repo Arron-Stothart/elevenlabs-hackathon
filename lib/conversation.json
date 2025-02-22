@@ -1,0 +1,292 @@
+{
+  "agent_id": "sONnrNEE5xBCy1gd3kKt",
+  "conversation_id": "6ZFBqkcULB1CNd8Beo3n",
+  "status": "done",
+  "transcript": [
+    {
+      "role": "agent",
+      "message": "Hi Barney! Thanks for sending over Cleo's deck. Would love to dive straight in and learn more about what you're building.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 0,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "user",
+      "message": "Hi, Oliver. How are you doing?",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 8,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "I'm doing well, thanks for asking! Ready to dive into Cleo's deck. Perhaps you could start by telling me a bit about the problem Cleo is trying to solve?\n",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 11,
+      "conversation_turn_metrics": {
+        "convai_llm_service_ttfb": {
+          "elapsed_time": 0.2740414319559932
+        },
+        "convai_llm_service_ttf_sentence": {
+          "elapsed_time": 0.44182052509859204
+        }
+      }
+    },
+    {
+      "role": "user",
+      "message": "Absolutely. So the problem really is that millennials don't trust or like their bank and that creates a lot of problems. And ultimately users have no control, extortionate fees, and it's just incredibly inconvenient. And this is why 73% of millennials would rather bank with Google than their current bank. And so we've created Clio, which is an intelligent personal financial advisor to ask them what they should be doing with their finances.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 22,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "Okay, I understand. So Cleo is positioning itself as a more trustworthy and user-friendly alternative to traditional banks, specifically targeting millennials who are dissatisfied with the current banking experience. It's aiming to provide personalized financial advice and greater control over their finances.\n\nTo get a clearer picture, could you elaborate on how Cleo's \"intelligent personal financial advisor\" works? What kind of advice does it offer, and how is it tailored to individual users?\n",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 53,
+      "conversation_turn_metrics": {
+        "convai_llm_service_ttfb": {
+          "elapsed_time": 0.2686928599141538
+        },
+        "convai_llm_service_ttf_sentence": {
+          "elapsed_time": 0.441199345048517
+        }
+      }
+    },
+    {
+      "role": "user",
+      "message": "Yeah, absolutely. So every single message is specific to the request done by the user and it also has a personality that's very millennial. So it fits into people's lives as it's just part of their normal chat interface.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 81,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "Got it. So the advice is personalized based on user requests and delivered in a conversational, millennial-friendly style within a chat interface.\n\nCould you give me some examples of the types of requests users can make and the specific advice Cleo provides in response? Also, how does Cleo learn about the user's financial situation to provide relevant advice?\n",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 97,
+      "conversation_turn_metrics": {
+        "convai_llm_service_ttfb": {
+          "elapsed_time": 0.19060762412846088
+        },
+        "convai_llm_service_ttf_sentence": {
+          "elapsed_time": 0.43536138790659606
+        }
+      }
+    },
+    {
+      "role": "user",
+      "message": "Yeah, so Clio is directly embedded with open banking to the people's bank accounts. So we can see the transactions coming in and out. Some of the solutions are, for example, like asking, hey Clio how much money have I spent on Pret this month? And it can then go and look at that as something like hey Alex you've spent 32 pounds of Pret since I don't know the first of February.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 117,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "That's helpful context. So Cleo leverages open banking to access users' transaction data and provide specific insights, like tracking spending habits at particular merchants. The example you gave about tracking Pret spending is very clear.\n\nTo understand the full scope of Cleo's capabilities, could you tell me about other types of financial advice or services Cleo offers beyond just tracking spending? For example, does Cleo help with budgeting, saving, investing, or debt management?\n",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 142,
+      "conversation_turn_metrics": {
+        "convai_llm_service_ttfb": {
+          "elapsed_time": 0.31023463187739253
+        },
+        "convai_llm_service_ttf_sentence": {
+          "elapsed_time": 0.4790579308755696
+        }
+      }
+    },
+    {
+      "role": "user",
+      "message": "Yeah, absolutely. So right now the real focus is just making sure that people are on top of their money and their budget. So budgeting is incredibly important and we're really, really focused on people nailing their budget. So the classic text will be like, you're nailing your budget. You've saved 142 pounds this month. Shall we put it into your not mega account or leave it for the weekend? And then people can reply like the weekend. And what that means is like we can immediately move things from loans to savings and investments or anything that's particularly important to the user.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 168,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "Okay, I see. So the primary focus is on budgeting and helping users stay on top of their finances. Cleo encourages saving by providing positive reinforcement and offering options to allocate savings towards different goals, like a \"not mega account\" or weekend spending. The ability to move funds between accounts directly from the chat interface seems like a key feature.\n\nTo clarify, when Cleo suggests moving money to a \"not mega account,\" is that a savings account...",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 202,
+      "conversation_turn_metrics": {
+        "convai_llm_service_ttfb": {
+          "elapsed_time": 0.22703721490688622
+        },
+        "convai_llm_service_ttf_sentence": {
+          "elapsed_time": 0.43588723591528833
+        }
+      }
+    },
+    {
+      "role": "user",
+      "message": "Not mega account.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 227,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "Sorry, I didn't catch that. Could you please repeat that?\n",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 230,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "user",
+      "message": "Yeah, it's not not mega account. It's not meg, the company, not meg. N-U-T-M-E-G.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 233,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "Thanks for clarifying that, Barney. So, when Cleo suggests moving money to a \"Nutmeg\" account, is that a savings or investment account offered through a partnership, or is...",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 241,
+      "conversation_turn_metrics": {
+        "convai_llm_service_ttfb": {
+          "elapsed_time": 0.2075791540555656
+        },
+        "convai_llm_service_ttf_sentence": {
+          "elapsed_time": 0.46210042596794665
+        }
+      }
+    },
+    {
+      "role": "user",
+      "message": "Yeah, it's a partnership. Well, it's integrated. It's just like an API. It's just integrated.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 249,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "Understood. So Cleo integrates with Nutmeg via API, allowing users to easily move funds into their...",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 256,
+      "conversation_turn_metrics": {
+        "convai_llm_service_ttfb": {
+          "elapsed_time": 0.23718999605625868
+        },
+        "convai_llm_service_ttf_sentence": {
+          "elapsed_time": 0.44131303299218416
+        }
+      }
+    },
+    {
+      "role": "user",
+      "message": "Yep.",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 261,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "Okay, great. I think I have a good understanding of the core functionality now.\n\nTo shift gears slightly, could you tell me about Cleo's target market within the millennial demographic? Are you focusing on a specific age...",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 264,
+      "conversation_turn_metrics": {
+        "convai_llm_service_ttfb": {
+          "elapsed_time": 0.21774905105121434
+        },
+        "convai_llm_service_ttf_sentence": {
+          "elapsed_time": 0.47118172491900623
+        }
+      }
+    },
+    {
+      "role": "user",
+      "message": "Pretty fucking great!",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 274,
+      "conversation_turn_metrics": null
+    },
+    {
+      "role": "agent",
+      "message": "Sorry,...",
+      "tool_calls": null,
+      "tool_results": null,
+      "feedback": null,
+      "time_in_call_secs": 276,
+      "conversation_turn_metrics": null
+    }
+  ],
+  "metadata": {
+    "start_time_unix_secs": 1740238598,
+    "call_duration_secs": 280,
+    "cost": 1849,
+    "deletion_settings": {
+      "deletion_time_unix_secs": 1803310878,
+      "deleted_logs_at_time_unix_secs": null,
+      "deleted_audio_at_time_unix_secs": null,
+      "deleted_transcript_at_time_unix_secs": null,
+      "delete_transcript_and_pii": true,
+      "delete_audio": true
+    },
+    "feedback": {
+      "overall_score": null,
+      "likes": 0,
+      "dislikes": 0
+    },
+    "authorization_method": "signed_url",
+    "charging": {
+      "dev_discount": false
+    },
+    "termination_reason": ""
+  },
+  "analysis": {
+    "evaluation_criteria_results": {},
+    "data_collection_results": {},
+    "call_successful": "success",
+    "transcript_summary": "This conversation revolves around Cleo, a financial technology product targeting millennials. The discussion begins with Barney explaining Cleo's mission to address millennials' distrust of traditional banks by offering an intelligent personal financial advisor.\n\nCleo uses open banking to access users' transaction data, providing personalized financial advice through a chat interface with a millennial-friendly tone. The product focuses primarily on budgeting and spending tracking, offering specific insights like expenditure at particular merchants.\n\nBarney emphasizes Cleo's ability to help users manage their budget, providing encouragement and options for allocating savings. The platform can move funds between accounts, including integration with Nutmeg via API for investments or savings.\n\nThe conversation touches on Cleo's target market within the millennial demographic, though specifics aren't provided. The exchange ends abruptly with an enthusiastic exclamation from Barney, suggesting a positive outlook on Cleo's potential.\n\nThroughout the conversation, the interviewer asks probing questions to understand Cleo's functionality, market positioning, and unique selling points."
+  },
+  "conversation_initiation_client_data": {
+    "conversation_config_override": {
+      "agent": null,
+      "tts": null
+    },
+    "custom_llm_extra_body": {},
+    "dynamic_variables": {
+      "user_name": "Barney",
+      "company_name": "Cleo"
+    }
+  }
+}
