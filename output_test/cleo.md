@@ -7,14 +7,17 @@ An A.I. assistant for your money.
 [barney@meetcleo.com](mailto:barney@meetcleo.com) | +44 (0) 7876 377 209
 
 
+
 # PROBLEM
 Millennials don't like or **trust** their bank anymore
-**NO CONTROL**
+
+NO CONTROL
 No one wants to spend 4 hours in excel to understand where their money is going.
-**EXTORTIONATE FEES**
+EXTORTIONATE FEES
 Hidden fees and sneaky charges don't sit well with a price sensitive and hyper-informed
 generation.
-**INCONVENIENT**
+
+INCONVENIENT
 Call centers and seven passwords to remember? No, thanks.
 
 
@@ -34,12 +37,10 @@ financial advisor.
 
 < Messages
 Hey Alex!
-
 09:41
 Cleo
 1
 Details
-
 MasterCard (9030): -£760
 Current Acc (0224): £1078
 Savings (5441): £1700
@@ -47,16 +48,13 @@ Overall: £2018
 
 Cool, how much have I spent at
 pret this month?
-
 You've spent £44 at Pret
 since you got paid on the 15th
 of December.
 Message
 Cool
 Thanks
-
 Read 12:17
-
 QWERTYUIOP
 ASDFGHJKL
 123
@@ -66,28 +64,23 @@ return
 
 
 # Ask Cleo anything about
-your finances
+# your finances
+## SOLUTION
+# Intelligent notifications keep
+# you in control at all times
 
-# SOLUTION
-Intelligent notifications keep
-you in control at all times
+**Messages** **09:41** **Cleo** **Details**
 
-Messages
-09:41
-Cleo
-Details
+**Messages** **09:41** **Cleo** **Details**
 
 Hey Cleo, how much have I
 spent on pret this month?
 
 Hey Alex!
+
 You've spent £32 at Pret
 since you got paid.
 
-Messages
-09:41
-Cleo
-Details
 You're nailing your budget
 
 You've saved £142 so far this
@@ -100,56 +93,60 @@ weekend ?
 Weekend.
 
 
-# Virality is baked into the
-product
+# Virality is baked into the product
 
 # SOLUTION
-Cleo helps you switch to
-better products
+# Cleo helps you switch to better products
 
-..... 09:41 1
-
-Messages Cleo Details
-
+.....
+09:41
+*
+Messages
+Cleo
+Details
 Good night last night? You
-bought a few rounds
+bought a few rounds 🍷 🍸 ...
 Does anyone owe you money?
 
 Yes! Tom owes me 20 quid.
 If you give me his phone
 number, I'll ask him for it.
 Read 20:07
-
-..... 09:41 1
-Messages Cleo Details
+.....
+09:41
+1
+4
+Cleo
+Details
+Messages
 Hey, Your credit card bill just
-came in. You could save £74
+came in 😬. You could save £74
 a month by switching. Shall I
 help you apply?
 
 Yes, please!
-Done check your inbox
+Done 🙌 check your inbox
 
 
-# Cleo fits into your life
+# SOLUTION
 
-sms
-Facebook Messenger
-Telegram
-WhatsApp slack
+## Cleo fits into your life
+
+![sms icon](data:image/png;base64,)
+![Facebook Messenger icon](data:image/png;base64,)
+![Telegram icon](data:image/png;base64,)
+![WhatsApp icon](data:image/png;base64,)
+![Slack icon](data:image/png;base64,)
+
+![iPhone icon](data:image/png;base64,)
+![Android icon](data:image/png;base64,)
 
 Cleo is available in multiple messaging channels.
-
-SOLUTION
-
-iPhone
-כוסRכחa
-
 Mobile app accompanies the chat interface.
 
 
 # WHY NOW?
-## This is **exactly** the right time to do this
+# This is **exactly** the right time to do this
 New EU-wide regulation, **PSD2**, has been adopted. Banks are required to **open APIs** for customer transaction data and payments in the next **two** years.
 
 **FASTER GROWTH**
@@ -162,8 +159,7 @@ The cost of acquiring data goes to zero.
 Cleo will be able to make payments on your behalf.
 
 
-# **TRACTION**
-
+# TRACTION
 We are growing. Quickly.
 
 7 weeks since invite-only beta launch
@@ -193,56 +189,59 @@ Check appendix for details.
 
 
 # BUSINESS MODEL
-
 A multi-billion dollar opportunity
 
 KILLING THE CREDIT CARD
-
 A pre-approved £1000 - £3000 line of credit delivered straight to your account.
 
 FOR MILLENNIALS
-
 Transparent, flexible and fast.
 
 THE MARKET IS HUGE
-
 67% of all consumer credit is currently credit cards. Over a £200 billion market in the UK alone.
 
 
 # VISION
-# Cleo is the missing link between banks and financial innovation
+Cleo is the missing link between banks and financial innovation
 
-# Banking infrastructure
-# Nationwide
-# LLOYDS BANKING GROUP
-# RBS The Royal Bank of Scotland
-# NatWest
-# BARCLAYS
+Banking infrastructure
+Loans
 
-# Loans
-# zopa™
+Nationwide
 
-# Foreign exchange
-# TransferWise
+LLOYDS
+BANKING
+GROUP
 
-# Saving and investments
-# nutmeg
+RBS
+The Royal Bank of Scotland
+
+NatWest
+
+BARCLAYS
+
+zopa
+Foreign exchange
+
+TransferWise
+Saving and investments
+
+nutmeg
 
 
 # The banking platform of the future
-VISION
 
-**A BETTER BANKING EXPERIENCE**
+A BETTER BANKING EXPERIENCE
 Achieved by linking innovative financial services directly to your bank account.
 
-**SOLVING THE REAL PROBLEM INSTEAD OF BUILDING A BANK**
+SOLVING THE REAL PROBLEM INSTEAD OF BUILDING A BANK
 Building a new bank is reinventing the wheel. Instead of dealing with the regulator, we focus on providing
 the best banking experience.
 
-**CHALLENGER BANKS WON'T WIN THE MARKET**
+CHALLENGER BANKS WON'T WIN THE MARKET
 Getting people to switch to a new bank is hard. We allow them to easily connect to an intelligent service.
 
-**WE WILL OWN THE CUSTOMER AND THE DATA**
+WE WILL OWN THE CUSTOMER AND THE DATA
 Banks will become the plumbing while we control the value added services.
 
 
@@ -250,9 +249,8 @@ Banks will become the plumbing while we control the value added services.
 
 An A.I. assistant for your money.
 
-[www.meetcleo.com](http://www.meetcleo.com)
+[www.meetcleo.com](http://www.meetcleo.com/)
 
-[barney@meetcleo.com](mailto:barney@meetcleo.com) | +44 (0) 7876 377 209
+barney@meetcleo.com | +44 (0) 7876 377 209
 
-An Entrepreneur First company
-
+ef. An Entrepreneur First company

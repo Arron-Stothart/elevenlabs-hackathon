@@ -89,7 +89,45 @@ def get_structured_values(formatted_text):
     return user_input_structured
 
 
+def get_company_facts(formatted_text):
+    system_prompt = formatted_text
+    user_prompt = """
+    Extract and summarize all key facts about the company from this pitch deck. Include:
+
+    Market:
+    - Market size and opportunity
+    - Competitive landscape
+    - Business model and revenue streams
+
+    Customers:
+    - Target customer segments
+    - Customer pain points
+    - Value proposition
+
+    Traction:
+    - Current metrics and growth
+    - Financial projections
+    - Funding history and current ask
+
+    Team:
+    - Founders
+    
+    Format as a clear, bulleted list. Do not add any commentary or anything else.
+    """
+    prompts = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_prompt},
+    ]
+
+    facts = get_gemini_2_0_flash().invoke(prompts)
+    return facts
+
+
 if __name__ == "__main__":
     result = asyncio.run(parse_pdf("cleo.pdf"))
     structured_values = get_structured_values(result)
+    company_facts = get_company_facts(result)
+    print("Structured Values:")
     print(structured_values)
+    print("\nCompany Facts:")
+    print(company_facts)
