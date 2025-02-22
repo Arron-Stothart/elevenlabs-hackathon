@@ -5,6 +5,12 @@ import { Box, Upload, Presentation, Check } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Switch } from "@/components/ui/switch"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Checkbox } from "@/components/ui/checkbox"
 
 interface StructuredData {
   company_name: string;
@@ -22,6 +28,7 @@ export default function FileUpload() {
   const [isUploaded, setIsUploaded] = React.useState(false)
   const [structuredData, setStructuredData] = React.useState<StructuredData | null>(null)
   const [error, setError] = React.useState<string | null>(null)
+  const [editedData, setEditedData] = React.useState<StructuredData | null>(null)
 
   const saveFile = async (file: File): Promise<string> => {
     // Generate a unique filename with timestamp
@@ -123,6 +130,18 @@ export default function FileUpload() {
     }
   }, [])
 
+  // Add this effect to initialize editedData when structuredData is received
+  React.useEffect(() => {
+    if (structuredData) {
+      setEditedData(structuredData)
+    }
+  }, [structuredData])
+
+  const handleConfirm = async () => {
+    // Here you can handle the confirmed data
+    console.log('Confirmed data:', editedData)
+  }
+
   return (
     <div className="w-full max-w-6xl mx-auto p-4 h-[80vh]">
       <div
@@ -154,14 +173,6 @@ export default function FileUpload() {
                 >
                   <Upload className="h-6 w-6" />
                 </motion.div>
-              ) : isUploaded && structuredData ? (
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", duration: 0.5 }}
-                >
-                  <Check className="h-6 w-6 text-green-500" />
-                </motion.div>
               ) : (
                 <Presentation className="h-6 w-6 text-muted-foreground" />
               )}
@@ -180,19 +191,101 @@ export default function FileUpload() {
                 </>
               ) : isUploaded && structuredData ? (
                 <>
-                  <h2 className="text-xl font-semibold mb-2">Analysis Complete!</h2>
-                  <p className="text-sm text-muted-foreground mb-4">Here's what we found:</p>
+                  <h2 className="text-xl font-semibold mb-2">We need to confirm some details</h2>
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-4 text-left bg-muted p-6 rounded-lg space-y-2 w-full max-w-md"
+                    className="mt-4 text-left space-y-4 w-full max-w-md"
                   >
-                    <p><span className="font-medium">Company:</span> {structuredData.company_name}</p>
-                    <p><span className="font-medium">Description:</span> {structuredData.company_description}</p>
-                    <p><span className="font-medium">Industry:</span> {structuredData.industry}</p>
-                    <p><span className="font-medium">Location:</span> {structuredData.location}</p>
-                    <p><span className="font-medium">Revenue:</span> {structuredData.has_revenue ? "Yes" : "No"}</p>
-                    <p><span className="font-medium">Active Users:</span> {structuredData.has_users ? "Yes" : "No"}</p>
+                    <div className="space-y-2">
+                      <Label htmlFor="company_name" className="text-sm text-muted-foreground">
+                        Company Name
+                      </Label>
+                      <Input
+                        id="company_name"
+                        value={editedData?.company_name || ''}
+                        onChange={(e) => setEditedData(prev => prev ? {...prev, company_name: e.target.value} : null)}
+                        className="border-0 border-b border-muted-foreground/20 rounded-none px-0 py-0 h-7 focus-visible:ring-0 focus-visible:border-b-2 focus-visible:border-primary transition-colors bg-transparent"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="company_description" className="text-sm text-muted-foreground">
+                        Company Description
+                      </Label>
+                      <Textarea
+                        id="company_description"
+                        value={editedData?.company_description || ''}
+                        onChange={(e) => setEditedData(prev => prev ? {...prev, company_description: e.target.value} : null)}
+                        className="border-0 border-b border-muted-foreground/20 rounded-none px-0 py-0 focus-visible:ring-0 focus-visible:border-b-2 focus-visible:border-primary transition-colors bg-transparent resize-none line-clamp-3 min-h-0 h-7 overflow-y-hidden"
+                        style={{
+                          height: '1.75rem'
+                        }}
+                        onInput={(e) => {
+                          const target = e.target as HTMLTextAreaElement;
+                          target.style.height = '1.75rem';
+                          target.style.height = Math.min(target.scrollHeight, 84) + 'px';
+                        }}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="industry" className="text-sm text-muted-foreground">
+                        Industry
+                      </Label>
+                      <Input
+                        id="industry"
+                        value={editedData?.industry || ''}
+                        onChange={(e) => setEditedData(prev => prev ? {...prev, industry: e.target.value} : null)}
+                        className="border-0 border-b border-muted-foreground/20 rounded-none px-0 py-0 h-7 focus-visible:ring-0 focus-visible:border-b-2 focus-visible:border-primary transition-colors bg-transparent"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="location" className="text-sm text-muted-foreground">
+                        Location
+                      </Label>
+                      <Input
+                        id="location"
+                        value={editedData?.location || ''}
+                        onChange={(e) => setEditedData(prev => prev ? {...prev, location: e.target.value} : null)}
+                        className="border-0 border-b border-muted-foreground/20 rounded-none px-0 py-0 h-7 focus-visible:ring-0 focus-visible:border-b-2 focus-visible:border-primary transition-colors bg-transparent"
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between pt-4">
+                      <div className="flex items-center space-x-3">
+                        <Checkbox
+                          id="has_revenue"
+                          checked={editedData?.has_revenue || false}
+                          onCheckedChange={(checked) => setEditedData(prev => prev ? {...prev, has_revenue: checked as boolean} : null)}
+                          className="h-5 w-5 rounded-full border-muted-foreground/20 data-[state=checked]:border-primary data-[state=checked]:bg-primary"
+                        />
+                        <Label htmlFor="has_revenue" className="text-sm text-muted-foreground">
+                          Has Revenue
+                        </Label>
+                      </div>
+
+                      <div className="flex items-center space-x-3">
+                        <Checkbox
+                          id="has_users"
+                          checked={editedData?.has_users || false}
+                          onCheckedChange={(checked) => setEditedData(prev => prev ? {...prev, has_users: checked as boolean} : null)}
+                          className="h-5 w-5 rounded-full border-muted-foreground/20 data-[state=checked]:border-primary data-[state=checked]:bg-primary"
+                        />
+                        <Label htmlFor="has_users" className="text-sm text-muted-foreground">
+                          Has Active Users
+                        </Label>
+                      </div>
+                    </div>
+
+                    <Button 
+                      className="w-full mt-8" 
+                      onClick={handleConfirm}
+                      variant="default"
+                    >
+                      Submit
+                    </Button>
                   </motion.div>
                 </>
               ) : (
