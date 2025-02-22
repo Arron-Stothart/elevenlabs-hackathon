@@ -13,10 +13,48 @@ agent_id = os.getenv("OLIVER_AGENT_ID")
 api_key = os.getenv("ELEVENLABS_API_KEY")
 
 client = ElevenLabs(api_key=api_key)
+company_facts = """
+• Business Model and Revenue Streams:
+  - Product referrals and lead generation
+  - Financial activity analysis for targeted product referrals
+  - Future: Pre-approved line of credit as credit card alternative
+
+• Market Size and Opportunity:
+  - £220M - £350M market opportunity (product referrals/lead gen)
+  - £22+ yearly revenue per user, 10-15M potential customers
+  - £200B+ UK credit card market opportunity
+
+• Competitive Advantages:
+  - Focus on banking experience vs building new bank
+  - Integrates with existing banks
+  - AI money assistant
+  - Built-in virality
+  - Product switching assistance
+  - Multi-channel messaging
+  - Owns customer data while banks handle infrastructure
+
+• Team:
+  - Entrepreneur First company
+  - Contact: barney@meetcleo.com | +44 (0) 7876 377 209
+
+• Traction (7 weeks post beta):
+  - 272 bank connects
+  - 27% week-on-week growth
+  - 64% weekly user engagement
+  - 5000 messages sent
+
+• Financials:
+  - £22+ projected yearly revenue per user
+  - Funding details not provided
+"""
 
 dynamic_vars = {
     "user_name": "Barney",
     "company_name": "Cleo",
+    "company_description": "An A.I. assistant for your money.",
+    "has_revenue": False,
+    "has_users": True,
+    "company_facts": company_facts,
 }
 
 
@@ -34,7 +72,7 @@ conversation = Conversation(
     # Simple callbacks that print the conversation to the console.
     callback_agent_response=lambda response: print(f"Agent: {response}"),
     callback_agent_response_correction=lambda original, corrected: print(
-        f"Agent: {original} -> {corrected}"
+        f"Agent correction: {corrected}"
     ),
     callback_user_transcript=lambda transcript: print(f"User: {transcript}"),
     # Uncomment if you want to see latency measurements.
