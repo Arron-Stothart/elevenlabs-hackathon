@@ -48,39 +48,57 @@ def generate_notes(simplified_transcript: list[dict]):
     """
 
     user_prompt = """
-    Extract and summarize all key facts about the company from the conversation. Include:
+    Extract and summarize all key facts about the company from the conversation:
 
-    TLDR:
-    Company name:
-    Company description:
-    Location:
-    Industry:
-    Has revenue:
-    Has users:
+    # Quick Facts
+    - Company name:
+    - One-line description:
+    - Location:
+    - Industry:
+    - Revenue status:
+    - User status:
 
-    Market:
-    - Market size and opportunity
-    - Competitive landscape
+    # Team
+    - Founders' backgrounds and experience
+    - Key personality traits and impressions
+    - Vision and goals
+    
+    # Problem
+    - Target audience and pain points
+    - Market size and scope
+    - Current solutions and their limitations
+
+    # Product
+    - Core solution and functionality
+    - Key differentiators
+    - Technical details (if relevant)
+
+    # Go-to-Market
+    - Sales strategy and channels
+    - Pricing model
+    - Customer acquisition approach
     - Business model and revenue streams
 
-    Customers:
-    - Target customer segments
-    - Customer pain points
-    - Value proposition
-
-    Traction:
+    # Traction
     - Current metrics and growth
-    - Financial projections
-    - Funding history and current ask
+    - Key milestones achieved
+    - Customer/user feedback
+    - Financial performance
 
-    Team:
-    - Founders background
-    - Founders personality
-    - Founders goals
+    # Funding
+    - Current fundraising details
+    - Previous funding history
+    - Use of funds
+    - Terms (if discussed)
 
-    Mention any key insights or takeaways from the conversation. If any of the above points are not mentioned omit them.
+    # Next Steps
+    - Key dates and deadlines
+    - Follow-up items
+    - Action items for both parties
 
-    Format as a clear, bulleted list in markdown. Do not add any commentary or anything else.
+    Mention any additional key insights or red flags from the conversation. If any sections above aren't covered in the conversation, omit them.
+
+    Format as a clear, bulleted list in markdown. Provide only factual information without commentary.
     """
 
     prompts = [
