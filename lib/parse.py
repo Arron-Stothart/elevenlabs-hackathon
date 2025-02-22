@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 from pyzerox import zerox
 import os
-import json
 import asyncio
 from langchain_google_genai import ChatGoogleGenerativeAI
 from functools import lru_cache
@@ -35,10 +34,10 @@ def get_gemini_2_0_flash():
 
 
 # Define main async entrypoint
-async def parse_pdf() -> str:
+async def parse_pdf(filename: str) -> str:
     # Update path to be relative to script location
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(script_dir, "..", "uploads", "cleo.pdf")
+    file_path = os.path.join(script_dir, "..", "uploads", filename)
     output_dir = os.path.join(script_dir, "..", "output_test")
 
     # Verify file exists
@@ -91,6 +90,6 @@ def get_structured_values(formatted_text):
 
 
 if __name__ == "__main__":
-    result = asyncio.run(parse_pdf())
+    result = asyncio.run(parse_pdf("cleo.pdf"))
     structured_values = get_structured_values(result)
     print(structured_values)
