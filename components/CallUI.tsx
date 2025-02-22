@@ -36,7 +36,7 @@ export default function CallUI() {
   }, [])
 
   return (
-    <div className="fixed inset-0 bg-[url('/oliver-call.jpg')] bg-cover bg-center bg-no-repeat before:content-[''] before:absolute before:inset-0 before:backdrop-blur-xl before:bg-black/40">
+    <div className="fixed inset-0 bg-[url('/oliver-call.jpg')] bg-cover bg-center bg-no-repeat before:content-[''] before:absolute before:inset-0 before:backdrop-blur-sm before:bg-black/40">
       {/* Name overlay */}
       <div className="absolute top-8 left-8">
         <h1 className="text-white text-3xl font-semibold tracking-tight">
@@ -78,6 +78,12 @@ export default function CallUI() {
           className="rounded-full h-12 w-12"
         >
           <Video className="h-5 w-5" />
+        </Button>
+        <Button 
+          variant="secondary"
+          className="rounded-full h-12 "
+        >
+          Complete Call
         </Button>
       </div>
     </div>
