@@ -3,3 +3,4 @@ uvicorn[standard]==0.30.6
 elevenlabs
 dotenv
 python-dotenv
+py-zerox==0.0.7
