@@ -11,6 +11,8 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
+import CallerInfo from "@/components/CallerInfo"
+import { useRouter } from "next/navigation"
 
 interface StructuredData {
   company_name: string;
@@ -21,7 +23,12 @@ interface StructuredData {
   has_users: boolean;
 }
 
-export default function FileUpload() {
+interface FileUploadProps {
+  onComplete: (companyName: string) => void;
+}
+
+export default function FileUpload({ onComplete }: FileUploadProps) {
+  const router = useRouter()
   const [isDragging, setIsDragging] = React.useState(false)
   const [files, setFiles] = React.useState<File[]>([])
   const [isUploading, setIsUploading] = React.useState(false)
@@ -29,6 +36,7 @@ export default function FileUpload() {
   const [structuredData, setStructuredData] = React.useState<StructuredData | null>(null)
   const [error, setError] = React.useState<string | null>(null)
   const [editedData, setEditedData] = React.useState<StructuredData | null>(null)
+  const [isConfirmed, setIsConfirmed] = React.useState(false)
 
   const saveFile = async (file: File): Promise<string> => {
     // Generate a unique filename with timestamp
@@ -138,8 +146,9 @@ export default function FileUpload() {
   }, [structuredData])
 
   const handleConfirm = async () => {
-    // Here you can handle the confirmed data
-    console.log('Confirmed data:', editedData)
+    if (editedData?.company_name) {
+      onComplete(editedData.company_name)
+    }
   }
 
   return (
@@ -154,153 +163,150 @@ export default function FileUpload() {
         onDragLeave={onDragLeave}
         onDrop={onDrop}
       >
-
         <AnimatePresence mode="wait">
           <motion.div
-            key={isUploaded ? "uploaded" : "upload"}
+            key={isConfirmed ? "caller" : isUploaded ? "uploaded" : "upload"}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
             className="flex flex-col items-center gap-6"
           >
-            <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center">
-              {isUploading ? (
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  className="text-primary"
-                >
-                  <Upload className="h-6 w-6" />
-                </motion.div>
-              ) : (
-                <Presentation className="h-6 w-6 text-muted-foreground" />
-              )}
-            </div>
+            {isConfirmed ? (
+              <CallerInfo companyName={editedData?.company_name || 'your company'} />
+            ) : isUploading ? (
+              <>
+                <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    className="text-primary"
+                  >
+                    <Upload className="h-6 w-6" />
+                  </motion.div>
+                </div>
 
-            <motion.div
-              className="text-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-            >
-              {isUploading ? (
-                <>
+                <motion.div
+                  className="text-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
                   <h2 className="text-xl font-semibold mb-2">Processing PDF...</h2>
                   <p className="text-sm text-muted-foreground">This may take a few moments</p>
-                </>
-              ) : isUploaded && structuredData ? (
-                <>
-                  <h2 className="text-xl font-semibold mb-2">We need to confirm some details</h2>
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-4 text-left w-full max-w-5xl"
-                  >
-                    <div className="bg-card border rounded-lg shadow-sm p-6">
-                      <div className="space-y-6">
-                        <div className="space-y-2">
-                          <Label htmlFor="company_name">
-                            Company Name
-                          </Label>
-                          <Input
-                            id="company_name"
-                            value={editedData?.company_name || ''}
-                            onChange={(e) => setEditedData(prev => prev ? {...prev, company_name: e.target.value} : null)}
+                </motion.div>
+              </>
+            ) : isUploaded && structuredData ? (
+              <>
+                <h2 className="text-xl font-semibold mb-2">We need to confirm some details</h2>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 text-left w-full max-w-5xl"
+                >
+                  <div className="bg-card border rounded-lg shadow-sm p-6">
+                    <div className="space-y-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="company_name">
+                          Company Name
+                        </Label>
+                        <Input
+                          id="company_name"
+                          value={editedData?.company_name || ''}
+                          onChange={(e) => setEditedData(prev => prev ? {...prev, company_name: e.target.value} : null)}
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="company_description">
+                          Company Description
+                        </Label>
+                        <Textarea
+                          id="company_description"
+                          value={editedData?.company_description || ''}
+                          onChange={(e) => setEditedData(prev => prev ? {...prev, company_description: e.target.value} : null)}
+                          className="resize-none"
+                          rows={3}
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="industry">
+                          Industry
+                        </Label>
+                        <Input
+                          id="industry"
+                          value={editedData?.industry || ''}
+                          onChange={(e) => setEditedData(prev => prev ? {...prev, industry: e.target.value} : null)}
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="location">
+                          Location
+                        </Label>
+                        <Input
+                          id="location"
+                          value={editedData?.location || ''}
+                          onChange={(e) => setEditedData(prev => prev ? {...prev, location: e.target.value} : null)}
+                        />
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <Checkbox
+                            id="has_revenue"
+                            checked={editedData?.has_revenue || false}
+                            onCheckedChange={(checked) => setEditedData(prev => prev ? {...prev, has_revenue: checked as boolean} : null)}
+                            className="rounded-full"
                           />
+                          <Label htmlFor="has_revenue">
+                            Has Revenue
+                          </Label>
                         </div>
 
-                        <div className="space-y-2">
-                          <Label htmlFor="company_description">
-                            Company Description
-                          </Label>
-                          <Textarea
-                            id="company_description"
-                            value={editedData?.company_description || ''}
-                            onChange={(e) => setEditedData(prev => prev ? {...prev, company_description: e.target.value} : null)}
-                            className="resize-none"
-                            rows={3}
+                        <div className="flex items-center space-x-3">
+                          <Checkbox
+                            id="has_users"
+                            checked={editedData?.has_users || false}
+                            onCheckedChange={(checked) => setEditedData(prev => prev ? {...prev, has_users: checked as boolean} : null)}
+                            className="rounded-full"
                           />
-                        </div>
-
-                        <div className="space-y-2">
-                          <Label htmlFor="industry">
-                            Industry
+                          <Label htmlFor="has_users">
+                            Has Active Users
                           </Label>
-                          <Input
-                            id="industry"
-                            value={editedData?.industry || ''}
-                            onChange={(e) => setEditedData(prev => prev ? {...prev, industry: e.target.value} : null)}
-                          />
-                        </div>
-
-                        <div className="space-y-2">
-                          <Label htmlFor="location">
-                            Location
-                          </Label>
-                          <Input
-                            id="location"
-                            value={editedData?.location || ''}
-                            onChange={(e) => setEditedData(prev => prev ? {...prev, location: e.target.value} : null)}
-                          />
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <Checkbox
-                              id="has_revenue"
-                              checked={editedData?.has_revenue || false}
-                              onCheckedChange={(checked) => setEditedData(prev => prev ? {...prev, has_revenue: checked as boolean} : null)}
-                              className="rounded-full"
-                            />
-                            <Label htmlFor="has_revenue">
-                              Has Revenue
-                            </Label>
-                          </div>
-
-                          <div className="flex items-center space-x-3">
-                            <Checkbox
-                              id="has_users"
-                              checked={editedData?.has_users || false}
-                              onCheckedChange={(checked) => setEditedData(prev => prev ? {...prev, has_users: checked as boolean} : null)}
-                              className="rounded-full"
-                            />
-                            <Label htmlFor="has_users">
-                              Has Active Users
-                            </Label>
-                          </div>
                         </div>
                       </div>
                     </div>
+                  </div>
 
-                    <Button 
-                      className="w-full mt-6" 
-                      onClick={handleConfirm}
-                      variant="default"
-                    >
-                      Submit
-                    </Button>
-                  </motion.div>
-                </>
-              ) : (
-                <>
-                  <h2 className="text-xl font-semibold mb-2">Upload your Pitch Deck</h2>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Oliver Kicks will review the deck before your personalised interview
-                  </p>
-                </>
-              )}
-              
-              {error && (
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-red-500 text-sm mt-4 p-3 bg-red-50 rounded-md"
-                >
-                  {error}
-                </motion.p>
-              )}
-            </motion.div>
+                  <Button 
+                    className="w-full mt-6" 
+                    onClick={handleConfirm}
+                    variant="default"
+                  >
+                    Submit
+                  </Button>
+                </motion.div>
+              </>
+            ) : (
+              <>
+                <h2 className="text-xl font-semibold mb-2">Upload your Pitch Deck</h2>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Oliver Kicks will review the deck before your personalised interview
+                </p>
+              </>
+            )}
+            
+            {error && (
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-red-500 text-sm mt-4 p-3 bg-red-50 rounded-md"
+              >
+                {error}
+              </motion.p>
+            )}
 
             {!isUploaded && !isUploading && (
               <motion.div
