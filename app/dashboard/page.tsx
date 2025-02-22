@@ -115,7 +115,7 @@ export default function StartupsPage() {
       <div className="grid gap-6 md:grid-cols-2">
         {startups.map((startup) => (
           <Link 
-            href={`/startups/${startup.id}`} 
+            href={`/dashboard/startups/${startup.id}`} 
             key={startup.id}
             className="group"
           >
