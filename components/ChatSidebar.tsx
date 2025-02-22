@@ -43,11 +43,11 @@ export default function ChatSidebar() {
           </Button>
           <Button variant="outline" className="shadow-none rounded-lg bg-white">
             <Image src="/slack.svg" alt="Slack" width={16} height={16} className="mr-2" />
-            <span>Slack</span>
+            <span>Share on Slack</span>
           </Button>
           <Button variant="outline" className="shadow-none rounded-lg bg-white">
             <Image src="/attio.svg" alt="Attio" width={16} height={16} className="mr-2" />
-            <span>Attio</span>
+            <span>Add to Attio</span>
           </Button>
         </div>
       </div>
