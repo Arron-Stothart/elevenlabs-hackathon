@@ -78,7 +78,7 @@ def generate_notes(simplified_transcript: list[dict]):
     - Founders personality
     - Founders goals
 
-    Mention any key insights or takeaways from the conversation.
+    Mention any key insights or takeaways from the conversation. If any of the above points are not mentioned omit them.
 
     Format as a clear, bulleted list in markdown. Do not add any commentary or anything else.
     """
