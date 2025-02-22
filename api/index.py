@@ -3,7 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from lib.parse import parse_pdf, get_structured_values
 from lib.main import conversation
+from typing import List 
 import json
+from lib.admin import process_chat_message
+import os
 
 ### Create FastAPI instance with custom docs and openapi url
 app = FastAPI(docs_url="/api/py/docs", openapi_url="/api/py/openapi.json")
@@ -17,8 +20,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 class ParseRequest(BaseModel):
     filepath: str
+
+class ChatMessage(BaseModel):
+    role: str
+    content: str
+
+class ChatRequest(BaseModel):
+    messages: List[ChatMessage]
+    context: str = ""
 
 @app.post("/parse")
 async def parse_pdf_endpoint(request: ParseRequest):
@@ -33,6 +45,37 @@ async def parse_pdf_endpoint(request: ParseRequest):
             "message": "File processed successfully",
             "structured_data": structured_data.dict(),
         }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+    
+@app.post("/chat")
+async def chat_endpoint(request: ChatRequest):
+    try:
+        # Convert Pydantic messages to dict format expected by Gemini
+        formatted_messages = [
+            {"role": msg.role, "content": msg.content} 
+            for msg in request.messages
+        ]
+        
+        # Try to load the transcript markdown file
+        transcript_content = ""
+        try:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            file_path = os.path.join(script_dir, "..", "output_test", f"{request.context}.md")
+            if os.path.exists(file_path):
+                with open(file_path, 'r') as f:
+                    transcript_content = f.read()
+        except Exception as e:
+            print(f"Warning: Could not load transcript: {e}")
+            
+        # Add transcript to context if found
+        context = request.context
+        if transcript_content:
+            context = f"{context}\n\nTranscript:\n{transcript_content}"
+        
+        response = process_chat_message(formatted_messages, context)
+        return {"response": response}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

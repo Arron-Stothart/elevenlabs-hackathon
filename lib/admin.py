@@ -5,7 +5,6 @@ from elevenlabs import ElevenLabs
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from posthog.ai.langchain import CallbackHandler
-from langchain_core.prompts import ChatPromptTemplate
 import posthog
 
 load_dotenv()
@@ -162,6 +161,36 @@ def chat_to_transcript(simplified_transcript: str, user_prompt: str):
         prompts, config={"callbacks": [callback_handler]}
     )
     return answer.content
+
+
+def process_chat_message(messages: list, meeting_notes: str = ""):
+    """Process a chat message about meeting notes."""
+    system_prompt = f"""
+    You are an AI assistant helping a VC with their questions. Prefer shorter, plain text responses.
+    
+    Here are the meeting notes from an automated call with a founder:
+    <transcript>
+    {meeting_notes}
+    </transcript>
+
+    
+    Provide clear, concise, and relevant responses focused on helping the VC understand key points 
+    and make informed decisions. When appropriate, reference specific details from the meeting notes 
+    or pitch deck in your responses.
+    Respond in plain text - no markdown.
+    """
+
+    prompts = [
+        {"role": "system", "content": system_prompt},
+    ]
+    
+    # Add the conversation history
+    prompts.extend(messages)
+
+    response = get_gemini_2_0_flash().invoke(
+        prompts, config={"callbacks": [callback_handler]}
+    )
+    return response.content
 
 
 if __name__ == "__main__":

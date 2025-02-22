@@ -5,23 +5,59 @@ import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { Copy, Mail } from 'lucide-react'
 import Image from 'next/image'
+import { useParams } from 'next/navigation'
 
 interface Message {
   role: 'user' | 'assistant'
   content: string
 }
 
-export default function ChatSidebar() {
+interface ChatSidebarProps {
+  getContext: () => string;
+}
+
+export default function ChatSidebar({ getContext }: ChatSidebarProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const params = useParams()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!input.trim()) return
+    if (!input.trim() || isLoading) return
 
-    setMessages([...messages, { role: 'user', content: input }])
+    const userMessage: Message = { role: 'user', content: input }
+    setMessages(prev => [...prev, userMessage])
     setInput('')
-    // Here you would typically make an API call to your AI service
+    setIsLoading(true)
+
+    try {
+      const response = await fetch('http://localhost:8000/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages: [...messages, userMessage],
+          context: getContext()
+        }),
+      })
+
+      if (!response.ok) throw new Error('Failed to get response')
+      
+      const data = await response.json()
+      const assistantMessage: Message = { role: 'assistant', content: data.response }
+      setMessages(prev => [...prev, assistantMessage])
+    } catch (error) {
+      console.error('Chat error:', error)
+      const errorMessage: Message = { 
+        role: 'assistant', 
+        content: 'Sorry, I encountered an error processing your request.' 
+      }
+      setMessages(prev => [...prev, errorMessage])
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -68,6 +104,13 @@ export default function ChatSidebar() {
             </div>
           </div>
         ))}
+        {isLoading && (
+          <div className="mr-4">
+            <div className="text-sm bg-white rounded-lg p-3 animate-pulse">
+              Thinking...
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Form */}
@@ -78,6 +121,7 @@ export default function ChatSidebar() {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask about the meeting..."
           className="focus-visible:ring-0 focus-visible:ring-offset-0 rounded-lg bg-white"
+          disabled={isLoading}
         />
       </form>
     </div>

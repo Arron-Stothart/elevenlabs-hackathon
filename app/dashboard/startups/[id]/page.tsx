@@ -67,6 +67,10 @@ export default function StartupPage({ params }: { params: { id: string } }) {
     ]
   });
 
+  const getEditorContent = () => {
+    return JSON.stringify(editor.document);
+  };
+
   return (
     <div className="flex">
       <main className="flex-1 container p-4 md:p-6 relative">
@@ -119,7 +123,7 @@ export default function StartupPage({ params }: { params: { id: string } }) {
           </TooltipProvider>
         </div>
       </main>
-      <ChatSidebar />
+      <ChatSidebar getContext={getEditorContent} />
     </div>
   );
 }
