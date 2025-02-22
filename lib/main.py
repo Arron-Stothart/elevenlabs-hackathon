@@ -3,21 +3,30 @@ import signal
 
 from dotenv import load_dotenv
 from elevenlabs.client import ElevenLabs
-from elevenlabs.conversational_ai.conversation import Conversation
+from elevenlabs.conversational_ai.conversation import Conversation, ConversationConfig
 from elevenlabs.conversational_ai.default_audio_interface import DefaultAudioInterface
 
 load_dotenv()
 
-
-agent_id = os.getenv("AGENT_ID")
+# agent_id = os.getenv("JUSTINE_AGENT_ID")
+agent_id = os.getenv("OLIVER_AGENT_ID")
 api_key = os.getenv("ELEVENLABS_API_KEY")
 
 client = ElevenLabs(api_key=api_key)
+
+dynamic_vars = {
+    "user_name": "Barney",
+    "company_name": "Cleo",
+}
+
+
+config = ConversationConfig(dynamic_variables=dynamic_vars)
 
 conversation = Conversation(
     # API client and agent ID.
     client,
     agent_id,
+    config=config,
     # Assume auth is required when API_KEY is set.
     requires_auth=bool(api_key),
     # Use the default audio interface.
