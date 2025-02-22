@@ -78,6 +78,13 @@ conversation = Conversation(
     # callback_latency_measurement=lambda latency: print(f"Latency: {latency}ms"),
 )
 
+
+async def get_conversation_id(conversation):
+    conversation_id = conversation.wait_for_session_end()
+    print(f"Conversation ID: {conversation_id}")
+    return conversation_id
+
+
 async def process_audio(audio_data: bytes):
     # Process the audio data and get response
     response = await conversation.process_audio(audio_data)
