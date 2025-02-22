@@ -1,7 +1,10 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
+import { useState } from "react"
 
 export default function LoginPage() {
   return (
@@ -14,6 +17,42 @@ export default function LoginPage() {
 
           <div className="space-y-6 max-w-md">
             <p className="text-base text-muted-foreground">Create AI personas that match your investment thesis and communication style, enabling personalized pitch simulations with voice-matched responses.</p>
+
+            <div className="space-y-4">
+              <label 
+                htmlFor="pdf-upload" 
+                className="block p-4 border-2 border-dashed rounded-lg text-center cursor-pointer hover:bg-gray-50"
+              >
+                <span className="text-sm text-muted-foreground">Drop your pitch deck PDF here or click to upload</span>
+                <input
+                  id="pdf-upload"
+                  type="file"
+                  accept=".pdf"
+                  className="hidden"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+
+                    const formData = new FormData();
+                    formData.append('pdf', file);
+
+                    try {
+                      const response = await fetch('/api/upload', {
+                        method: 'POST',
+                        body: formData,
+                      });
+                      
+                      if (!response.ok) throw new Error('Upload failed');
+                      
+                      const data = await response.json();
+                      console.log('Upload successful:', data);
+                    } catch (error) {
+                      console.error('Upload error:', error);
+                    }
+                  }}
+                />
+              </label>
+            </div>
 
             <Button variant="outline" className="w-full h-12 text-base font-normal">
               Continue with Google
