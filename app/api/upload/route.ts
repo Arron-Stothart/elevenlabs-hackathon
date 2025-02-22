@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     
     // Write the file
     const filePath = join(dirPath, file.name);
-    await writeFile(filePath, buffer);
+    await writeFile(filePath, new Uint8Array(buffer));
     
     return NextResponse.json({ 
       success: true,

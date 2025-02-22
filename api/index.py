@@ -1,10 +1,8 @@
 from fastapi import FastAPI, HTTPException, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import Dict
-import asyncio
 from lib.parse import parse_pdf, get_structured_values
-from lib.main import conversation, dynamic_vars
+from lib.main import conversation
 import json
 
 ### Create FastAPI instance with custom docs and openapi url
