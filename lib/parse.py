@@ -3,7 +3,6 @@ from pyzerox import zerox
 import os
 import asyncio
 from langchain_google_genai import ChatGoogleGenerativeAI
-from functools import lru_cache
 from pydantic import BaseModel
 
 load_dotenv()
@@ -22,11 +21,18 @@ def get_gemini_2_0_flash():
 
 
 # Define main async entrypoint
-async def parse_pdf(filename: str) -> str:
-    # Update path to be relative to script location
+async def parse_pdf(filepath: str) -> str:
+    # Extract filename from full path
+    filename = os.path.basename(filepath)
+    
+    # Use the root persistence directory
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(script_dir, "..", "uploads", filename)
-    output_dir = os.path.join(script_dir, "..", "output_test")
+    root_dir = os.path.join(script_dir, "..")
+    file_path = os.path.join(root_dir, "persistence", "data", "files", filename)
+    output_dir = os.path.join(root_dir, "persistence", "data", "output")
+
+    # Ensure output directory exists
+    os.makedirs(output_dir, exist_ok=True)
 
     # Verify file exists
     if not os.path.exists(file_path):

@@ -3,14 +3,7 @@ import type { NextRequest } from 'next/server'
 import { mkdir } from 'fs/promises'
 import { join } from 'path'
 
-export async function middleware(request: NextRequest) {
-  // Ensure uploads directory exists
-  try {
-    await mkdir(join(process.cwd(), 'uploads'), { recursive: true })
-  } catch (error) {
-    console.error('Error creating uploads directory:', error)
-  }
-  
+export async function middleware(request: NextRequest) {  
   return NextResponse.next()
 }
 

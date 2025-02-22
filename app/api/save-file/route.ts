@@ -10,8 +10,9 @@ export async function POST(req: Request) {
 
     const safeName = filename.replace(/[^a-zA-Z0-9-_\.]/g, '_')
     
-    const uploadsDir = join(process.cwd(), 'uploads')
-    await writeFile(join(uploadsDir, safeName), Buffer.from(content, 'base64'))
+    // Save to persistence directory instead of uploads
+    const filesDir = join(process.cwd(), 'persistence', 'data', 'files')
+    await writeFile(join(filesDir, safeName), content, 'base64')
 
     return NextResponse.json({ success: true })
   } catch (error) {

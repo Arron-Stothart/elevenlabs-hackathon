@@ -20,13 +20,13 @@ app.add_middleware(
 )
 
 class ParseRequest(BaseModel):
-    filename: str
+    filepath: str
 
 @app.post("/parse")
 async def parse_pdf_endpoint(request: ParseRequest):
     try:
-        # Parse the PDF using the provided filename
-        parsed_text = await parse_pdf(filename=request.filename)
+        # Parse the PDF using the provided filepath
+        parsed_text = await parse_pdf(filepath=request.filepath)
 
         # Get structured values
         structured_data = get_structured_values(parsed_text)

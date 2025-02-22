@@ -1,19 +1,13 @@
-import Link from "next/link"
+'use client'
+
+import { useEffect, useState } from 'react'
+import { getAllStartups } from '@/persistence/storage'
+import { Startup } from '@/types/startup'
+import Link from 'next/link'
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
-
-export interface Startup {
-  id: string
-  name: string
-  industry: string
-  location: string
-  fundingRound: string
-  summary: string
-  tags: string[]
-  pitchDate: string
-}
 
 export const startups: Startup[] = [
   {
@@ -78,95 +72,46 @@ export const startups: Startup[] = [
   }
 ]
 
-export default function StartupsPage() {
+export default function Dashboard() {
+  const [startups, setStartups] = useState<Startup[]>([])
+
+  useEffect(() => {
+    // Fetch startups using the async function
+    const fetchStartups = async () => {
+      const data = await getAllStartups()
+      setStartups(data)
+    }
+    
+    fetchStartups()
+  }, [])
+
   return (
-    <main className="container mx-auto p-4 md:p-6">
-      <Card className="mb-8 shadow-none border">
-        <CardContent className="p-6">
-          <div className="flex gap-6">
-            <div className="relative w-32 h-32">
-              <Image
-                src="/oliver-profile.jpeg"
-                alt="Oliver Profile"
-                fill
-                className="rounded-lg object-cover"
-                priority
-              />
-            </div>
-            
-            <div className="flex-1">
-              <h1 className="text-2xl font-semibold mb-2">
-                Oliver Kicks - Partner at Concept Ventures
-              </h1>
-              <p className="text-muted-foreground mb-4">
-                Partner at Concept Ventures, focusing on pre-seed investments in Games, Entertainment, and AI. Previously the firm's first employee in 2019, he serves as a Board Observer for companies like Waypoint and Eleven Labs.
-              </p>
-              <div className="flex gap-2">
-                <Badge variant="secondary">Games</Badge>
-                <Badge variant="secondary">Entertainment</Badge>
-                <Badge variant="secondary">AI</Badge>
-                <Badge variant="secondary">Pre-seed</Badge>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      <div className="grid gap-6 md:grid-cols-2">
-        {startups.map((startup) => (
+    <div className="container mx-auto py-8">
+      <h1 className="text-2xl font-bold mb-6">Startups Dashboard</h1>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {startups.map(startup => (
           <Link 
-            href={`/dashboard/startups/${startup.id}`} 
-            key={startup.id}
-            className="group"
+            key={startup.id} 
+            href={`/dashboard/startups/${startup.id}`}
+            className="block p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
           >
-            <Card className="overflow-hidden shadow-none border hover:bg-gray-50 transition-colors">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h2 className="text-lg font-medium">{startup.name}</h2>
-                    <div className="text-sm text-muted-foreground">
-                      {new Date(startup.pitchDate).toLocaleDateString()}
-                    </div>
-                  </div>
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <svg 
-                      width="24" 
-                      height="24" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                      className="text-gray-400"
-                    >
-                      <path d="M5 12h14"/>
-                      <path d="m12 5 7 7-7 7"/>
-                    </svg>
-                  </div>
-                </div>
-
-                <div className="mt-4">
-                  <p className="text-muted-foreground">{startup.summary}</p>
-                </div>
-
-                <div className="mt-6">
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline" className="bg-blue-50">
-                      {startup.fundingRound}
-                    </Badge>
-                    {startup.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <h2 className="text-xl font-semibold mb-2">{startup.name}</h2>
+            <p className="text-gray-600 mb-4">{startup.summary}</p>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                {startup.industry}
+              </span>
+              <span className="text-sm bg-green-100 text-green-800 px-2 py-1 rounded">
+                {startup.fundingRound}
+              </span>
+            </div>
+            <div className="text-sm text-gray-500">
+              {new Date(startup.pitchDate).toLocaleDateString()}
+            </div>
           </Link>
         ))}
       </div>
-    </main>
+    </div>
   )
 }

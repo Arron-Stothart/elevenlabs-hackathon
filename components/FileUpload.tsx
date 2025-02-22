@@ -13,6 +13,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import CallerInfo from "@/components/CallerInfo";
 import { useRouter } from "next/navigation";
+import { v4 as uuidv4 } from 'uuid'
+import { saveStartup, addFile } from '@/persistence/storage'
 
 interface StructuredData {
   company_name: string;
@@ -43,13 +45,15 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
   const [isConfirmed, setIsConfirmed] = React.useState(false);
 
   const saveFile = async (file: File): Promise<string> => {
-    // Generate a unique filename with timestamp
     const timestamp = new Date().getTime();
     const filename = `${timestamp}-${file.name}`;
-    const filepath = `/uploads/${filename}`;
+    const filepath = `/persistence/data/files/${filename}`;
 
     try {
-      // Save file to local filesystem
+      // Convert file to base64
+      const fileBuffer = await file.arrayBuffer();
+      const base64Content = Buffer.from(fileBuffer).toString('base64');
+
       const response = await fetch("/api/save-file", {
         method: "POST",
         headers: {
@@ -57,9 +61,7 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
         },
         body: JSON.stringify({
           filename,
-          content: await file
-            .arrayBuffer()
-            .then((buffer) => Buffer.from(buffer).toString("base64")),
+          content: base64Content,
         }),
       });
 
@@ -67,7 +69,7 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
         throw new Error("Failed to save file");
       }
 
-      return filename;
+      return filepath;
     } catch (error) {
       throw new Error("Failed to save file to server");
     }
@@ -80,15 +82,15 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
 
     try {
       // First save the file
-      const filename = await saveFile(file);
+      const filepath = await saveFile(file);
 
-      // Then send the filename to the parse endpoint
+      // Then send the filepath to the parse endpoint
       const response = await fetch("http://localhost:8000/parse", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ filename }),
+        body: JSON.stringify({ filepath }),
       });
 
       if (!response.ok) {
@@ -160,7 +162,43 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
 
   const handleConfirm = async () => {
     if (editedData?.company_name) {
-      onComplete(editedData.company_name);
+      const startupId = uuidv4()
+      const startup = {
+        id: startupId,
+        name: editedData.company_name,
+        industry: editedData.industry || '',
+        location: editedData.location || '',
+        fundingRound: editedData.funding_round || '',
+        summary: editedData.company_description || '',
+        tags: [],
+        pitchDate: new Date().toISOString(),
+        structuredData: {
+          company_description: editedData.company_description || '',
+          has_revenue: editedData.has_revenue || false,
+          has_users: editedData.has_users || false
+        }
+      }
+
+      try {
+        // Save the startup data
+        await saveStartup(startup)
+
+        // If there are files, save them with paths relative to persistence directory
+        if (files.length > 0) {
+          for (const file of files) {
+            await addFile(startupId, {
+              name: file.name,
+              path: `/persistence/data/files/${file.name}`,
+              type: file.name.toLowerCase().endsWith('.pdf') ? 'pdf' : 'other'
+            })
+          }
+        }
+
+        onComplete(editedData.company_name)
+      } catch (error) {
+        console.error('Error saving startup:', error)
+        // Optionally show error to user
+      }
     }
   };
 

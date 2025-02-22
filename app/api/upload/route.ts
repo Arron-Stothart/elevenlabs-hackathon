@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     // Create a unique directory name using timestamp
     const timestamp = Date.now();
-    const dirPath = join(process.cwd(), 'uploads', `upload_${timestamp}`);
+    const dirPath = join(process.cwd(), 'persistence', 'data', 'files', `upload_${timestamp}`);
     
     // Create the directory
     await mkdir(dirPath, { recursive: true });
