@@ -189,6 +189,7 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
             {isConfirmed ? (
               <CallerInfo
                 companyName={editedData?.company_name || "your company"}
+                onStartCall={() => {}}
               />
             ) : isUploading ? (
               <>

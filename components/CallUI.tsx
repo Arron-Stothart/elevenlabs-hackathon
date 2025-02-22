@@ -12,28 +12,6 @@ export default function CallUI({ onComplete }: CallUIProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const websocketRef = useRef<WebSocket | null>(null)
 
-  // Helper function to cleanup connections
-  const cleanup = async () => {
-    // Send end session message and wait briefly for it to be sent
-    if (websocketRef.current?.readyState === WebSocket.OPEN) {
-      websocketRef.current.send(JSON.stringify({ type: "end_session" }));
-      // Small delay to allow message to be sent
-      await new Promise(resolve => setTimeout(resolve, 100));
-    }
-    
-    // Close websocket if open
-    if (websocketRef.current) {
-      websocketRef.current.close();
-      websocketRef.current = null;
-    }
-    
-    // Stop video tracks
-    if (videoRef.current?.srcObject) {
-      const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
-      tracks.forEach(track => track.stop());
-    }
-  }
-
   useEffect(() => {
     // Create WebSocket connection
     websocketRef.current = new WebSocket('ws://localhost:8000/ws/chat')
@@ -63,13 +41,42 @@ export default function CallUI({ onComplete }: CallUIProps) {
 
     setupWebcam()
 
-    // Cleanup function
-    return cleanup
+    // Modify cleanup return to be non-async
+    return () => {
+      if (websocketRef.current?.readyState === WebSocket.OPEN) {
+        websocketRef.current.send(JSON.stringify({ type: "end_session" }));
+      }
+      
+      if (websocketRef.current) {
+        websocketRef.current.close();
+        websocketRef.current = null;
+      }
+      
+      if (videoRef.current?.srcObject) {
+        const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
+        tracks.forEach(track => track.stop());
+      }
+    }
   }, [])
 
-  // Make handleComplete async to handle the cleanup
+  const cleanup = () => {
+    if (websocketRef.current?.readyState === WebSocket.OPEN) {
+      websocketRef.current.send(JSON.stringify({ type: "end_session" }));
+    }
+    
+    if (websocketRef.current) {
+      websocketRef.current.close();
+      websocketRef.current = null;
+    }
+    
+    if (videoRef.current?.srcObject) {
+      const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
+      tracks.forEach(track => track.stop());
+    }
+  }
+
   const handleComplete = async () => {
-    await cleanup();
+    cleanup();
     onComplete();
   }
 
