@@ -5,9 +5,10 @@ import { AnimatePresence, motion } from "framer-motion"
 import FileUpload from "@/components/FileUpload"
 import CallerInfo from "@/components/CallerInfo"
 import CallUI from "@/components/CallUI"
+import { Button } from "@/components/ui/button"
 
 export default function StartPage() {
-  const [stage, setStage] = React.useState<"upload" | "pre-call" | "call">("upload")
+  const [stage, setStage] = React.useState<"upload" | "pre-call" | "call" | "complete">("upload")
   const [companyName, setCompanyName] = React.useState("")
 
   const handleUploadComplete = (name: string) => {
@@ -17,6 +18,10 @@ export default function StartPage() {
 
   const handleStartCall = () => {
     setStage("call")
+  }
+
+  const handleCompleteCall = () => {
+    setStage("complete")
   }
 
   return (
@@ -52,7 +57,41 @@ export default function StartPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <CallUI />
+            <CallUI onComplete={handleCompleteCall} />
+          </motion.div>
+        )}
+
+        {stage === "complete" && (
+          <motion.div
+            key="complete"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="w-full max-w-md"
+          >
+            <div className="bg-card p-8 rounded-lg shadow-lg">
+              <h2 className="text-2xl font-semibold mb-6">Meeting Complete</h2>
+              <p className="text-muted-foreground mb-6">
+                Enter your email to receive a summary of the call.
+              </p>
+              <form onSubmit={(e) => {
+                e.preventDefault()
+                // Handle email submission here
+                const email = (e.target as HTMLFormElement).email.value
+                console.log("Email submitted:", email)
+              }}>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  className="w-full p-3 rounded-md border mb-4"
+                  required
+                />
+                <Button type="submit" className="w-full">
+                  Send Summary
+                </Button>
+              </form>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

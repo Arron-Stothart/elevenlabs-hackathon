@@ -4,7 +4,11 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { PhoneOff, Mic, Video } from "lucide-react"
 
-export default function CallUI() {
+interface CallUIProps {
+  onComplete: () => void
+}
+
+export default function CallUI({ onComplete }: CallUIProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const websocketRef = useRef<WebSocket | null>(null)
 
@@ -93,7 +97,8 @@ export default function CallUI() {
         </Button>
         <Button 
           variant="secondary"
-          className="rounded-full h-12 "
+          className="rounded-full h-12"
+          onClick={onComplete}
         >
           Complete Call
         </Button>
