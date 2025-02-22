@@ -1,87 +1,65 @@
-<p align="center">
-  <a href="https://nextjs-fastapi-starter.vercel.app/">
-    <img src="https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" height="96">
-    <h3 align="center">Next.js FastAPI Starter</h3>
-  </a>
-</p>
+# VentroAI - AI-Powered VC Interviews
 
-<p align="center">Simple Next.j 14 boilerplate that uses <a href="https://fastapi.tiangolo.com/">FastAPI</a> as the API backend.</p>
+VentroAI is a modern platform that enables VCs to conduct AI-powered interviews with startup founders using natural voice interactions. Built with Next.js, TypeScript, and the Eleven Labs API, it provides a seamless way to evaluate startup pitches and gather insights.
 
-<br/>
+## Features
 
-## Introduction
-
-This is a hybrid Next.js 14 + Python template. One great use case of this is to write Next.js apps that use Python AI libraries on the backend, while still having the benefits of Next.js Route Handlers and Server Side Rendering.
-
-## How It Works
-
-The Python/FastAPI server is mapped into to Next.js app under `/api/`.
-
-This is implemented using [`next.config.js` rewrites](https://github.com/digitros/nextjs-fastapi/blob/main/next.config.js) to map any request to `/api/py/:path*` to the FastAPI API, which is hosted in the `/api` folder.
-
-Also, the app/api routes are available on the same domain, so you can use NextJs Route Handlers and make requests to `/api/...`.
-
-On localhost, the rewrite will be made to the `127.0.0.1:8000` port, which is where the FastAPI server is running.
-
-In production, the FastAPI server is hosted as [Python serverless functions](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python) on Vercel.
-
-## Demo
-
-https://nextjs-fastapi-starter.vercel.app/
-
-## Deploy Your Own
-
-You can clone & deploy it to Vercel with one click:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdigitros%2Fnextjs-fastapi%2Ftree%2Fmain)
-
-## Developing Locally
-
-You can clone & create this repo with the following command
-
-```bash
-npx create-next-app nextjs-fastapi --example "https://github.com/digitros/nextjs-fastapi"
-```
+- 🎙️ Natural voice interactions powered by Eleven Labs AI
+- 📝 Real-time transcription of founder responses
+- 🔄 Customizable interview questions
+- 📊 Progress tracking and interview management
+- 🎯 Focused evaluation of startup potential
 
 ## Getting Started
 
-First, create and activate a virtual environment:
+### Prerequisites
 
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
+- Node.js 18+ and npm
+- An Eleven Labs API key (get one at [elevenlabs.io](https://elevenlabs.io))
 
-Then, install the dependencies:
+### Installation
 
-```bash
-npm install
-# or
-yarn
-# or
-pnpm install
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/ventroai.git
+   cd ventroai
+   ```
 
-Then, run the development server(python dependencies will be installed automatically here):
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+3. Copy the environment variables file and configure it:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Edit `.env.local` and add your Eleven Labs API key.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-The FastApi server will be running on [http://127.0.0.1:8000](http://127.0.0.1:8000) – feel free to change the port in `package.json` (you'll also need to update it in `next.config.js`).
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+1. Navigate to the interview page
+2. Click "Start" to begin recording your response
+3. Speak clearly into your microphone
+4. Click "Stop" when you're done
+5. The AI interviewer will respond and move to the next question
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [FastAPI Documentation](https://fastapi.tiangolo.com/) - learn about FastAPI features and API.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- Eleven Labs Conversation API
+
+## Acknowledgments
+
+- [Eleven Labs](https://elevenlabs.io) for their amazing voice AI technology
+- [Next.js](https://nextjs.org) for the awesome React framework
+- [Tailwind CSS](https://tailwindcss.com) for the utility-first CSS framework
