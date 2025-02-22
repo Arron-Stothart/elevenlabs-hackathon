@@ -156,8 +156,9 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
     <div className="w-full max-w-6xl mx-auto p-4 h-[80vh]">
       <div
         className={cn(
-          "relative rounded-lg p-12 h-full",
+          "relative rounded-lg p-12 aspect-square max-h-[80vh]",
           "flex flex-col items-center justify-center gap-6",
+          !isUploaded && "border-2 border-dashed border-muted-foreground/25",
           isDragging && "border-primary bg-primary/5"
         )}
         onDragOver={onDragOver}
@@ -203,9 +204,9 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 text-left w-full max-w-5xl"
+                  className="mt-4 text-left w-full"
                 >
-                  <div className="bg-card border rounded-lg shadow-sm p-6">
+                  <div className="bg-card border rounded-lg shadow-sm p-6 w-full">
                     <div className="space-y-6">
                       <div className="space-y-2">
                         <Label htmlFor="company_name">
@@ -253,10 +254,10 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
                         />
                       </div>
 
-                      <div className="space-y-2">
+                      <div className="space-y-2 w-[400px]">
                         <Label>Funding Round</Label>
                         <div className="flex rounded-lg border p-1 space-x-1">
-                          {["Seed", "Series A", "Series B", "Series C+", "Other"].map((round) => (
+                          {["Pre-seed", "Seed", "Series A", "Series B+"].map((round) => (
                             <button
                               key={round}
                               onClick={() => setEditedData(prev => prev ? {...prev, funding_round: round} : null)}
@@ -273,29 +274,57 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <Checkbox
-                            id="has_revenue"
-                            checked={editedData?.has_revenue || false}
-                            onCheckedChange={(checked) => setEditedData(prev => prev ? {...prev, has_revenue: checked as boolean} : null)}
-                            className="rounded-full"
-                          />
-                          <Label htmlFor="has_revenue">
-                            Has Revenue
-                          </Label>
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <Label>Do you have revenue?</Label>
+                          <div className="flex items-center space-x-6">
+                            <div className="flex items-center space-x-2">
+                              <div
+                                onClick={() => setEditedData(prev => prev ? {...prev, has_revenue: true} : null)}
+                                className={cn(
+                                  "h-4 w-4 rounded-full border transition-colors cursor-pointer",
+                                  editedData?.has_revenue ? "bg-primary border-primary" : "border-input"
+                                )}
+                              />
+                              <Label className="cursor-pointer">Yes</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <div
+                                onClick={() => setEditedData(prev => prev ? {...prev, has_revenue: false} : null)}
+                                className={cn(
+                                  "h-4 w-4 rounded-full border transition-colors cursor-pointer",
+                                  editedData?.has_revenue === false ? "bg-primary border-primary" : "border-input"
+                                )}
+                              />
+                              <Label className="cursor-pointer">No</Label>
+                            </div>
+                          </div>
                         </div>
 
-                        <div className="flex items-center space-x-3">
-                          <Checkbox
-                            id="has_users"
-                            checked={editedData?.has_users || false}
-                            onCheckedChange={(checked) => setEditedData(prev => prev ? {...prev, has_users: checked as boolean} : null)}
-                            className="rounded-full"
-                          />
-                          <Label htmlFor="has_users">
-                            Has Active Users
-                          </Label>
+                        <div className="space-y-2">
+                          <Label>Are People Using your Product?</Label>
+                          <div className="flex items-center space-x-6">
+                            <div className="flex items-center space-x-2">
+                              <div
+                                onClick={() => setEditedData(prev => prev ? {...prev, has_users: true} : null)}
+                                className={cn(
+                                  "h-4 w-4 rounded-full border transition-colors cursor-pointer",
+                                  editedData?.has_users ? "bg-primary border-primary" : "border-input"
+                                )}
+                              />
+                              <Label className="cursor-pointer">Yes</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <div
+                                onClick={() => setEditedData(prev => prev ? {...prev, has_users: false} : null)}
+                                className={cn(
+                                  "h-4 w-4 rounded-full border transition-colors cursor-pointer",
+                                  editedData?.has_users === false ? "bg-primary border-primary" : "border-input"
+                                )}
+                              />
+                              <Label className="cursor-pointer">No</Label>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -312,6 +341,9 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
               </>
             ) : (
               <>
+                <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center">
+                  <Upload className="h-6 w-6 text-muted-foreground" />
+                </div>
                 <h2 className="text-xl font-semibold mb-2">Upload your Pitch Deck</h2>
                 <p className="text-sm text-muted-foreground mb-2">
                   Oliver Kicks will review the deck before your personalised interview
