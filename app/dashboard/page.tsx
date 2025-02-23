@@ -140,7 +140,7 @@ export default async function StartupsPage() {
                       type="url"
                       id="knowledgebase"
                       className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background"
-                      placeholder="https://example.com"
+                      placeholder="acme.com"
                     />
                     <Button
                       variant="outline"
@@ -155,6 +155,19 @@ export default async function StartupsPage() {
                     <div className="flex items-center gap-2">
                       <div className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-base">
                         https://www.conceptventures.vc
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-6 w-6 p-0 hover:bg-transparent"
+                        >
+                          <span className="sr-only">Remove</span>
+                          ×
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-base">
+                        https://www.conceptventures.vc/news/top-questions-vcs-ask-founders
                         <Button
                           variant="ghost"
                           size="icon"
@@ -185,9 +198,14 @@ export default async function StartupsPage() {
                 </label>
                 <textarea
                   id="meetingGuidance"
-                  className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background"
+                  className="flex min-h-[180px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background"
                   placeholder="Provide guidance for startup meetings and key questions to ask"
-                  defaultValue="I like to start meetings by understanding the founder's journey and motivation. Key areas to explore: market size, competitive advantage, and go-to-market strategy. For AI companies, I focus on data moats and technical differentiation. Always end by discussing team composition and hiring plans."
+                  defaultValue={`
+What experience/expertise do you have in this industry?
+How is your product different?
+How much does customer acquisition cost?
+What is your go-to-market strategy?
+How have customers been interacting with your product/service?`}
                 />
               </div>
             </div>
