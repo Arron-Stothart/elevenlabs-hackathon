@@ -23,49 +23,49 @@ def get_gemini_2_0_flash():
 # Define main async entrypoint
 async def parse_pdf(filepath: str) -> str:
     # Extract filename from full path
-    # filename = os.path.basename(filepath)
-    
-    # # Use the root persistence directory
-    # script_dir = os.path.dirname(os.path.abspath(__file__))
-    # root_dir = os.path.join(script_dir, "..")
-    # file_path = os.path.join(root_dir, "persistence", "data", "files", filename)
-    # output_dir = os.path.join(root_dir, "persistence", "data", "output")
+    filename = os.path.basename(filepath)
 
-    # # Ensure output directory exists
-    # os.makedirs(output_dir, exist_ok=True)
+    # Use the root persistence directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    root_dir = os.path.join(script_dir, "..")
+    file_path = os.path.join(root_dir, "persistence", "data", "files", filename)
+    output_dir = os.path.join(root_dir, "persistence", "data", "output")
 
-    # # Verify file exists
-    # if not os.path.exists(file_path):
-    #     raise FileNotFoundError(f"PDF file not found at: {file_path}")
+    # Ensure output directory exists
+    os.makedirs(output_dir, exist_ok=True)
 
-    # result = await zerox(
-    #     cleanup=True,  # Clean temp files after processing
-    #     concurrency=10,  # Number of concurrent processes
-    #     file_path=file_path,  # Path to PDF
-    #     maintain_format=False,  # Don't maintain format between pages
-    #     model="gemini/gemini-2.0-flash",  # Using Gemini model defined above
-    #     output_dir=output_dir,  # Where to save output
-    #     temp_dir=None,  # Use system default temp dir
-    #     custom_system_prompt=None,  # Override zerox system prompt
-    #     select_pages=None,  # pages list
-    # )
+    # Verify file exists
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"PDF file not found at: {file_path}")
 
-    # # Format the pages with their index
-    # formatted_text = ""
-    # for page in result.pages:
-    #     formatted_text += f"#Page {page.page} {{\n{page.content}}}\n\n"
+    result = await zerox(
+        cleanup=True,  # Clean temp files after processing
+        concurrency=10,  # Number of concurrent processes
+        file_path=file_path,  # Path to PDF
+        maintain_format=False,  # Don't maintain format between pages
+        model="gemini/gemini-2.0-flash",  # Using Gemini model defined above
+        output_dir=output_dir,  # Where to save output
+        temp_dir=None,  # Use system default temp dir
+        custom_system_prompt=None,  # Override zerox system prompt
+        select_pages=None,  # pages list
+    )
 
-    data = {
-        "company_name": "Cleo",
-        "company_description": "Cleo is a financial wellness platform that helps people manage their money better.",
-        "location": "London, UK",
-        "industry": "Financial Wellness",
-        "has_revenue": True,
-        "has_users": True,
-        "funding_round": "Series A",
-    }
+    # Format the pages with their index
+    formatted_text = ""
+    for page in result.pages:
+        formatted_text += f"#Page {page.page} {{\n{page.content}}}\n\n"
 
-    return str(data)
+    # data = {
+    #     "company_name": "Cleo",
+    #     "company_description": "Cleo is a financial wellness platform that helps people manage their money better.",
+    #     "location": "London, UK",
+    #     "industry": "Financial Wellness",
+    #     "has_revenue": True,
+    #     "has_users": True,
+    #     "funding_round": "Series A",
+    # }
+
+    return formatted_text
 
 
 def get_structured_values(formatted_text):
@@ -129,9 +129,15 @@ def get_company_facts(formatted_text):
 
 
 if __name__ == "__main__":
+    print("Parsing PDF...")
     result = asyncio.run(parse_pdf("cleo.pdf"))
+    print("Done parsing PDF.")
+    print("Structuring values...")
     structured_values = get_structured_values(result)
+    print("Done structuring values.")
+    print("Getting company facts...")
     company_facts = get_company_facts(result)
+    print("Done getting company facts.")
     print("Structured Values:")
     print(structured_values)
     print("\nCompany Facts:")
