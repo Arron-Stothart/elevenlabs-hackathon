@@ -1,27 +1,53 @@
 # Quick Facts
 - Company name: Cleo
-- One-line description: An intelligent personal financial advisor.
+- One-line description: An AI assistant for your money
 - Industry: Fintech
-- User status: Has users
+- User status: Has users, growing quickly (27% week-on-week growth)
 
 # Team
-- Key personality traits and impressions: Founder is enthusiastic.
+- Key personality traits and impressions: Founder is enthusiastic
+- Company background: An Entrepreneur First company
 
 # Problem
-- Target audience and pain points: Millennials who don't trust or like their bank, experience lack of control, extortionate fees, and inconvenience.
-- Current solutions and their limitations: Traditional banks are not user-friendly or trustworthy for millennials.
+- Target audience and pain points: Millennials who don't trust or like their bank (73% would rather bank with Facebook, Google or Apple), experience:
+  - Lack of control (spending tracking requires hours in Excel)
+  - Extortionate fees and hidden charges
+  - Inconvenience (multiple passwords, call centers)
+- Current solutions and their limitations: Traditional banks are not user-friendly or trustworthy for millennials
 
 # Product
-- Core solution and functionality: An AI-powered personal financial advisor that integrates with users' bank accounts via open banking to provide personalized advice and insights through a chat interface. Helps users track spending, budget, and save.
-- Key differentiators: Millennial-friendly personality, conversational interface, direct integration with bank accounts, ability to move funds between accounts.
-- Technical details: Uses open banking APIs to access transaction data. Integrates with Nutmeg via API.
+- Core solution and functionality: An AI-powered personal financial advisor that:
+  - Integrates with users' bank accounts
+  - Provides personalized advice and insights through chat interface
+  - Helps track spending, budget, and save
+  - Sends intelligent notifications
+  - Available across multiple messaging channels with mobile app
+- Key differentiators: 
+  - Millennial-friendly personality
+  - Conversational interface
+  - Direct bank integration
+  - Ability to move funds between accounts
+  - Can help chase money owed by friends
+  - Helps users switch to better financial products
+- Technical details: 
+  - Uses open banking APIs (enabled by PSD2 regulation)
+  - Integrates with Nutmeg and other financial services
 
 # Go-to-Market
-- Business model and revenue streams: Product referrals & Lead Generation
+- Business model and revenue streams: 
+  - Product referrals & Lead Generation
+  - £22+ yearly revenue per user potential
+  - Market opportunity: £220M - £350M (assuming 10-15M potential customers)
+  - Additional opportunity in credit market (£200B+ in UK)
 
 # Traction
-- Current metrics and growth: Not explicitly mentioned in the conversation snippet.
+- Current metrics and growth:
+  - 272 bank connects after 7 weeks (beta)
+  - 27% week-on-week growth
+  - 64% weekly user engagement
+  - 5000 messages sent to Cleo
 
 # Additional Key Insights
-- Cleo focuses on budgeting and helping users stay on top of their finances.
-- Cleo integrates with Nutmeg, allowing users to easily move funds into their accounts.
+- Vision: Become the banking platform of the future by linking innovative financial services to bank accounts
+- Strategy: Focus on user experience rather than becoming a bank
+- Regulatory advantage: PSD2 regulation enables open banking APIs
