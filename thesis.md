@@ -28,3 +28,6 @@ The platform will be able to generate a report with the following sections:
 - Customers
 - Traction
 - Team
+
+
+Ventro helps VCs never miss a deal. We're an AI-powered platform that fits right into your workflow, ensuring every founder gets to pitch the right partner.
