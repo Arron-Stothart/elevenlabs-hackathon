@@ -4,6 +4,15 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { getAllStartups } from "@/persistence/storage"
+import { Settings, Target } from "lucide-react"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 export interface Startup {
   id: string
@@ -93,6 +102,117 @@ export default async function StartupsPage() {
 
   return (
     <main className="container mx-auto p-4 md:p-6">
+      <div className="flex justify-between items-center mb-6">
+        <div className="flex items-center gap-2">
+          <Target className="w-6 h-6 text-primary" />
+          <h1 className="text-2xl font-semibold">Ventro</h1>
+        </div>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline" className="shadow-none rounded-lg">Configure Persona</Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="text-xl">Investor Persona</DialogTitle>
+              <DialogDescription className="text-base">
+                Configure investment preferences and target metrics for your meetings.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="grid gap-2">
+                <label htmlFor="name" className="text-base font-medium">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background"
+                  placeholder="Enter your name"
+                  defaultValue="Oliver Kicks"
+                />
+              </div>
+              <div className="grid gap-2">
+                <label htmlFor="knowledgebase" className="text-base font-medium">
+                  Knowledgebase
+                </label>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="url"
+                      id="knowledgebase"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background"
+                      placeholder="acme.com"
+                    />
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-10 w-10"
+                      type="button"
+                    >
+                      +
+                    </Button>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-base">
+                        https://www.conceptventures.vc
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-6 w-6 p-0 hover:bg-transparent"
+                        >
+                          <span className="sr-only">Remove</span>
+                          ×
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-base">
+                        https://www.conceptventures.vc/news/top-questions-vcs-ask-founders
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-6 w-6 p-0 hover:bg-transparent"
+                        >
+                          <span className="sr-only">Remove</span>
+                          ×
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="grid gap-2">
+                <label htmlFor="description" className="text-base font-medium">
+                  Partner Bio
+                </label>
+                <textarea
+                  id="description"
+                  className="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background"
+                  placeholder="Brief description of your role and investment focus"
+                  defaultValue="Partner at Concept Ventures, focusing on pre-seed investments in Games, Entertainment, and AI. Previously the firm's first employee in 2019, he serves as a Board Observer for companies like Waypoint and Eleven Labs."
+                />
+              </div>
+              <div className="grid gap-2">
+                <label htmlFor="meetingGuidance" className="text-base font-medium">
+                  Key Questions
+                </label>
+                <textarea
+                  id="meetingGuidance"
+                  className="flex min-h-[180px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background"
+                  placeholder="Provide guidance for startup meetings and key questions to ask"
+                  defaultValue={`
+What experience/expertise do you have in this industry?
+How is your product different?
+How much does customer acquisition cost?
+What is your go-to-market strategy?
+How have customers been interacting with your product/service?`}
+                />
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
+
       <Card className="mb-8 shadow-none border">
         <CardContent className="p-6">
           <div className="flex gap-6">

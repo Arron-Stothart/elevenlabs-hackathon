@@ -62,8 +62,9 @@ async def parse_pdf(filepath: str) -> str:
     #     "industry": "Financial Wellness",
     #     "has_revenue": True,
     #     "has_users": True,
+    #     "funding_round": "Series A",
     # }
-    # Convert the dictionary to a formatted string
+
     return formatted_text
 
 

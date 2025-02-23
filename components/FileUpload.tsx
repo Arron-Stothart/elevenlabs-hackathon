@@ -50,26 +50,21 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
     const filepath = `/persistence/data/files/${filename}`;
 
     try {
-      // Convert file to base64
-      const fileBuffer = await file.arrayBuffer();
-      const base64Content = Buffer.from(fileBuffer).toString('base64');
+      // Create FormData and append file
+      const formData = new FormData();
+      formData.append('pdf', file);
 
-      const response = await fetch("/api/save-file", {
+      const response = await fetch("/api/upload", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          filename,
-          content: base64Content,
-        }),
+        body: formData, // Send as FormData instead of JSON
       });
 
       if (!response.ok) {
         throw new Error("Failed to save file");
       }
 
-      return filepath;
+      const data = await response.json();
+      return data.path; // Use the path returned from the server
     } catch (error) {
       throw new Error("Failed to save file to server");
     }
@@ -445,10 +440,10 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
             ) : (
               <>
                 <div className="flex flex-col items-start w-full px-56">
-                  <h1 className="text-7xl mb-6 text-start font-[var(--font-whyte-inktrap)]">
+                  <h1 className="text-7xl mb-6 text-start font-semibold">
                     Pitch to <span className="text-primary">Concept Ventures</span><br /> with Ventro.
                   </h1>
-                  <p className="text-muted-foreground mb-8 text-xl">A chance to speak with our partners any time</p>
+                  <p className="text-muted-foreground mb-8 text-xl">Get the chance to speak with our partners any time.</p>
                   <div className="w-full mx-auto p-8 py-24 text-center space-y-6 bg-card border rounded-lg shadow-lg">
                     <div className="mx-auto w-12 h-12 flex items-center justify-center">
                       <FileText className="w-8 h-8 text-muted-foreground" />
@@ -461,7 +456,7 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
                       <Button
                         size="lg"
                         variant="default"
-                        className="cursor-pointer"
+                        className="cursor-pointer rounded-lg"
                         onClick={() => document.getElementById('file-upload')?.click()}
                       >
                         <Upload className="mr-2 h-4 w-4" />

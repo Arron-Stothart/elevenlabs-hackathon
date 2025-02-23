@@ -7,13 +7,14 @@ import "@blocknote/mantine/style.css";
 import ChatSidebar from "@/components/ChatSidebar";
 import { StartupDetails } from "@/types/startup";
 import { Button } from "@/components/ui/button";
-import { Captions, Presentation } from "lucide-react";
+import { Captions, ChevronLeft, Presentation } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import Link from "next/link";
 
 const startup: StartupDetails = {
   id: "1",
@@ -242,9 +243,23 @@ export default function StartupPage({ params }: { params: { id: string } }) {
   return (
     <div className="flex">
       <main className="flex-1 container p-4 md:p-6 relative">
+        {/* Add back button */}
+        <Link
+          href="/dashboard"
+          className="fixed top-6 left-6 z-10"
+        >
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-10 w-10 rounded-full"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </Button>
+        </Link>
+
         <div className="flex flex-col px-32">
           <div className="flex flex-col mt-4 ml-[48px]">
-            <h1 className="text-3xl font-bold mb-4">{startup.name}</h1>
+            <h1 className="text-4xl font-bold mb-4">{startup.name}</h1>
             <div className="flex gap-2 mb-8 pr-2">
               <span className="px-3 py-1 border border-gray-300 text-gray-600 text-sm rounded-sm">
                 {new Date().toLocaleDateString()}
