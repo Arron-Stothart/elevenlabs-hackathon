@@ -1,14 +1,27 @@
-# Ventro - Never Miss a Deal
+# Ventro - Helping VCs Optimize Their Time on the Deals That Matter
 
 Ventro helps VCs scale their initial screening process by creating AI versions of their investment team, allowing them to evaluate more founders through personalized pitch simulations. Each AI persona maintains the VC's unique investment thesis and communication style, complete with voice-matched responses powered by ElevenLabs.
+
+## Our Vision
+
+The venture capital industry faces a critical inefficiency: VCs spend an enormous amount of time on initial screenings and managing inbound deals, taking away from their ability to focus on high-potential opportunities. Ventro solves this by combining several cutting-edge AI technologies:
+
+- LLM-powered deck analysis with automatic CRM integration
+- Voice replication using Eleven Labs' technology
+- Automated note-taking and transcript analysis with Gemini
+- Multilingual support for 24/7 founder engagement
+- Real-time speech-to-video models for partner facial expressions (in development)
 
 ## Features
 
 - 🎙️ Natural voice interactions powered by Eleven Labs AI
 - 📝 Real-time transcription of founder responses
-- 🔄 Customizable interview questions
+- 🔄 Customizable interview questions and knowledge bases
 - 📊 Progress tracking and interview management
 - 🎯 Focused evaluation of startup potential
+- 🤝 Seamless CRM integration
+- 🌍 Multilingual support
+- 📈 Automated deck analysis
 
 ## Getting Started
 
@@ -49,9 +62,19 @@ Ventro helps VCs scale their initial screening process by creating AI versions o
 - TypeScript
 - Tailwind CSS
 - Eleven Labs Conversation API
+- Gemini API for transcript analysis
+- Custom LLM models for deck analysis
+- OpenAI for natural language processing
+- MongoDB for data storage
+
+## Our Approach
+
+We believe that automation in VC isn't about replacing human judgment—it's about amplifying it. By handling initial screening and engagement automatically while maintaining each partner's authentic "voice" and investment philosophy, Ventro helps VCs focus their expertise where it matters most.
 
 ## Acknowledgments
 
-- [Eleven Labs](https://elevenlabs.io) for their amazing voice AI technology
-- [Next.js](https://nextjs.org) for the awesome React framework
+- [Eleven Labs](https://elevenlabs.io) for their voice AI technology
+- [Next.js](https://nextjs.org) for the React framework
 - [Tailwind CSS](https://tailwindcss.com) for the utility-first CSS framework
+- [OpenAI](https://openai.com) for language models
+- [Google](https://deepmind.google/technologies/gemini/) for Gemini API
