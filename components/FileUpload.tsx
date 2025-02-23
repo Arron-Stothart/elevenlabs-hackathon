@@ -203,18 +203,8 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-4">
-      <div
-        className={cn(
-          "relative rounded-lg p-12",
-          "flex flex-col items-center justify-center gap-4",
-          isDragging && "border-2 border-dashed border-primary bg-primary/5"
-        )}
-        onDragOver={onDragOver}
-        onDragLeave={onDragLeave}
-        onDrop={onDrop}
-      >
-        <AnimatePresence mode="wait">
+    <div className="w-full max-w-full mx-auto p-4">
+      <AnimatePresence mode="wait">
           <motion.div
             key={isConfirmed ? "caller" : isUploaded ? "uploaded" : "upload"}
             initial={{ opacity: 0, y: 20 }}
@@ -454,35 +444,41 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
               </>
             ) : (
               <>
-                <div className="w-full max-w-4xl mx-auto p-8 text-center space-y-6 bg-card border rounded-lg shadow-lg">
-                  <div className="mx-auto w-12 h-12 flex items-center justify-center">
-                    <FileText className="w-8 h-8 text-muted-foreground" />
-                  </div>
-                  <h2 className="text-2xl font-semibold">Upload your pitch deck</h2>
-                  <p className="text-muted-foreground">
-                    
-                  </p>
-                  <div>
-                    <Button
-                      size="lg"
-                      variant="default"
-                      className="cursor-pointer"
-                      onClick={() => document.getElementById('file-upload')?.click()}
-                    >
-                      <Upload className="mr-2 h-4 w-4" />
-                      Upload pitch deck
-                    </Button>
-                    <input
-                      id="file-upload"
-                      type="file"
-                      className="hidden"
-                      accept=".pdf"
-                      onChange={onFileSelect}
-                    />
+                <div className="flex flex-col items-start w-full px-56">
+                  <h1 className="text-7xl mb-6 text-start font-[var(--font-whyte-inktrap)]">
+                    Pitch to <span className="text-primary">Concept Ventures</span><br /> with Ventro.
+                  </h1>
+                  <p className="text-muted-foreground mb-8 text-xl">A chance to speak with our partners any time</p>
+                  <div className="w-full mx-auto p-8 py-24 text-center space-y-6 bg-card border rounded-lg shadow-lg">
+                    <div className="mx-auto w-12 h-12 flex items-center justify-center">
+                      <FileText className="w-8 h-8 text-muted-foreground" />
+                    </div>
+                    <h2 className="text-2xl font-semibold">Upload your pitch deck</h2>
+                    <p className="text-muted-foreground">
+                      
+                    </p>
+                    <div>
+                      <Button
+                        size="lg"
+                        variant="default"
+                        className="cursor-pointer"
+                        onClick={() => document.getElementById('file-upload')?.click()}
+                      >
+                        <Upload className="mr-2 h-4 w-4" />
+                        Upload pitch deck
+                      </Button>
+                      <input
+                        id="file-upload"
+                        type="file"
+                        className="hidden"
+                        accept=".pdf"
+                        onChange={onFileSelect}
+                      />
+                    </div>
                   </div>
                 </div>
                 
-                <div className="w-full mt-8">
+                <div className="w-full mt-8 px-56">
                   <div className="flex justify-between items-center gap-4">
                     <div className="h-4 flex-1 bg-muted rounded-full" />
                     <div className="h-4 flex-1 bg-muted rounded-full" />
@@ -514,7 +510,6 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
             )}
           </motion.div>
         </AnimatePresence>
-      </div>
     </div>
   );
 }

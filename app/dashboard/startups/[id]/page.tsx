@@ -245,7 +245,7 @@ export default function StartupPage({ params }: { params: { id: string } }) {
         <div className="flex flex-col px-32">
           <div className="flex flex-col mt-4 ml-[48px]">
             <h1 className="text-3xl font-bold mb-4">{startup.name}</h1>
-            <div className="flex gap-2 mb-8 px-2">
+            <div className="flex gap-2 mb-8 pr-2">
               <span className="px-3 py-1 border border-gray-300 text-gray-600 text-sm rounded-sm">
                 {new Date().toLocaleDateString()}
               </span>

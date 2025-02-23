@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+// Load WhyteInktrap font
+const whyteInktrap = localFont({
+  src: '../public/WhyteInktrap.ttf',
+  variable: '--font-whyte-inktrap'
+})
 
 export const metadata: Metadata = {
   title: 'VentroAI - AI-Powered VC Interviews',
@@ -15,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={whyteInktrap.variable}>
+      <body>
         {children}
       </body>
     </html>
