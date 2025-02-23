@@ -71,10 +71,11 @@ def get_structured_values(formatted_text):
     system_prompt = formatted_text
     user_prompt = """
     You are tasked with extracting specific fields from a pitch deck of a company.
+    Please analyze the content and extract the following information.
     """
     prompts = [
         {"role": "system", "content": system_prompt},
-        {"role": "user", "content": user_prompt},
+        {"role": "user", "content": user_prompt + " "},
     ]
 
     class Structure(BaseModel):
@@ -119,7 +120,7 @@ def get_company_facts(formatted_text):
     """
     prompts = [
         {"role": "system", "content": system_prompt},
-        {"role": "user", "content": user_prompt},
+        {"role": "user", "content": user_prompt + " "},
     ]
 
     facts = get_gemini_2_0_flash().invoke(prompts)
