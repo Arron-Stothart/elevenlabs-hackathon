@@ -73,7 +73,7 @@ export default function StartPage() {
             <div className="bg-card p-8 rounded-lg border">
               <h2 className="text-2xl font-semibold mb-4">Thanks for your time!</h2>
               <p className="text-muted-foreground mb-2">
-                The meeting has been completed successfully. We'll be in touch soon if theres a match.
+                The meeting has been completed successfully. We'll be in touch soon if there's a match.
               </p>
               <p className="text-muted-foreground mb-6">
               </p>
