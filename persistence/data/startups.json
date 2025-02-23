@@ -202,5 +202,133 @@
         "uploadedAt": "2025-02-23T09:20:18.648Z"
       }
     ]
+  },
+  "cce1e191-37b2-4c00-97d6-d6083cb63dee": {
+    "id": "cce1e191-37b2-4c00-97d6-d6083cb63dee",
+    "name": "Cleo",
+    "industry": "Financial Technology",
+    "location": "London, UK",
+    "fundingRound": "Seed",
+    "summary": "An A.I. assistant for your money.",
+    "tags": [],
+    "pitchDate": "2025-02-23T10:14:51.968Z",
+    "structuredData": {
+      "company_description": "An A.I. assistant for your money.",
+      "has_revenue": false,
+      "has_users": true
+    },
+    "files": [
+      {
+        "name": "Cleo_ Investor Deck, Seed (Shared).pdf",
+        "path": "/persistence/data/files/Cleo_ Investor Deck, Seed (Shared).pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-23T10:14:55.379Z"
+      },
+      {
+        "name": "Cleo_ Investor Deck, Seed (Shared).pdf",
+        "path": "/persistence/data/files/Cleo_ Investor Deck, Seed (Shared).pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-23T10:14:55.434Z"
+      },
+      {
+        "name": "cleo.pdf",
+        "path": "/persistence/data/files/cleo.pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-23T10:14:55.494Z"
+      }
+    ]
+  },
+  "8e34f415-4f84-4bdd-a315-a9e917089a1e": {
+    "id": "8e34f415-4f84-4bdd-a315-a9e917089a1e",
+    "name": "Cleo",
+    "industry": "Financial Technology",
+    "location": "London, UK",
+    "fundingRound": "Seed",
+    "summary": "An A.I. assistant for your money.",
+    "tags": [],
+    "pitchDate": "2025-02-23T10:14:52.134Z",
+    "structuredData": {
+      "company_description": "An A.I. assistant for your money.",
+      "has_revenue": false,
+      "has_users": true
+    },
+    "files": [
+      {
+        "name": "Cleo_ Investor Deck, Seed (Shared).pdf",
+        "path": "/persistence/data/files/Cleo_ Investor Deck, Seed (Shared).pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-23T10:14:55.395Z"
+      },
+      {
+        "name": "Cleo_ Investor Deck, Seed (Shared).pdf",
+        "path": "/persistence/data/files/Cleo_ Investor Deck, Seed (Shared).pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-23T10:14:55.451Z"
+      },
+      {
+        "name": "cleo.pdf",
+        "path": "/persistence/data/files/cleo.pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-23T10:14:55.509Z"
+      }
+    ]
+  },
+  "c9dd14d3-4f67-4be6-b0ef-1c57a0e76e2e": {
+    "id": "c9dd14d3-4f67-4be6-b0ef-1c57a0e76e2e",
+    "name": "Cleo",
+    "industry": "Financial Technology",
+    "location": "London, UK",
+    "fundingRound": "Seed",
+    "summary": "An A.I. assistant for your money.",
+    "tags": [],
+    "pitchDate": "2025-02-23T10:14:52.946Z",
+    "structuredData": {
+      "company_description": "An A.I. assistant for your money.",
+      "has_revenue": false,
+      "has_users": true
+    },
+    "files": [
+      {
+        "name": "Cleo_ Investor Deck, Seed (Shared).pdf",
+        "path": "/persistence/data/files/Cleo_ Investor Deck, Seed (Shared).pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-23T10:14:55.413Z"
+      },
+      {
+        "name": "Cleo_ Investor Deck, Seed (Shared).pdf",
+        "path": "/persistence/data/files/Cleo_ Investor Deck, Seed (Shared).pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-23T10:14:55.469Z"
+      },
+      {
+        "name": "cleo.pdf",
+        "path": "/persistence/data/files/cleo.pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-23T10:14:55.524Z"
+      }
+    ]
+  },
+  "1891a03c-eea1-4568-8e25-3a9fc8d7fab6": {
+    "id": "1891a03c-eea1-4568-8e25-3a9fc8d7fab6",
+    "name": "Cleo",
+    "industry": "Financial Technology",
+    "location": "London, UK",
+    "fundingRound": "Seed",
+    "summary": "An A.I. assistant for your money.",
+    "tags": [],
+    "pitchDate": "2025-02-23T10:16:35.789Z",
+    "structuredData": {
+      "company_description": "An A.I. assistant for your money.",
+      "has_revenue": false,
+      "has_users": true
+    },
+    "files": [
+      {
+        "name": "cleo.pdf",
+        "path": "/persistence/data/files/cleo.pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-23T10:16:35.879Z"
+      }
+    ]
   }
 }
