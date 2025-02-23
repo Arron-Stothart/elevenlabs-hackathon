@@ -330,5 +330,28 @@
         "uploadedAt": "2025-02-23T10:16:35.879Z"
       }
     ]
+  },
+  "41121dfd-9a4f-4b5a-b144-93d75ec0d912": {
+    "id": "41121dfd-9a4f-4b5a-b144-93d75ec0d912",
+    "name": "Cleo",
+    "industry": "Financial Wellness",
+    "location": "London, UK",
+    "fundingRound": "Seed",
+    "summary": "Cleo is a financial wellness platform that helps people manage their money better.",
+    "tags": [],
+    "pitchDate": "2025-02-23T10:51:57.516Z",
+    "structuredData": {
+      "company_description": "Cleo is a financial wellness platform that helps people manage their money better.",
+      "has_revenue": false,
+      "has_users": true
+    },
+    "files": [
+      {
+        "name": "cleo.pdf",
+        "path": "/persistence/data/files/cleo.pdf",
+        "type": "pdf",
+        "uploadedAt": "2025-02-23T10:51:57.592Z"
+      }
+    ]
   }
 }

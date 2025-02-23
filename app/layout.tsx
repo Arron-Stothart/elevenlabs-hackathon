@@ -9,7 +9,7 @@ const whyteInktrap = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'VentroAI - AI-Powered VC Interviews',
+  title: 'Ventro - AI Startup Screening',
   description: 'Conduct AI-powered interviews with startup founders using natural voice interactions.',
 }
 

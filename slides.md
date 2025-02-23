@@ -34,7 +34,7 @@ We believe Ventro should integrate with your existing workflow not replace it.
 How does this work?
 
 # Page 9
-- Parse the deck or document using LLMs -> informs the Agent through dynamic variables
+- Parse the deck or document using VLMs -> informs the Agent through dynamic variables
 - Replicate the voice of the partner (Eleven Labs)
 - Gemini to generate notes and let you chat with the transcript
 
