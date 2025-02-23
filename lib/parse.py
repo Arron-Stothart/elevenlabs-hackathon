@@ -24,7 +24,7 @@ def get_gemini_2_0_flash():
 async def parse_pdf(filepath: str) -> str:
     # Extract filename from full path
     filename = os.path.basename(filepath)
-    
+
     # Use the root persistence directory
     script_dir = os.path.dirname(os.path.abspath(__file__))
     root_dir = os.path.join(script_dir, "..")
@@ -128,9 +128,15 @@ def get_company_facts(formatted_text):
 
 
 if __name__ == "__main__":
+    print("Parsing PDF...")
     result = asyncio.run(parse_pdf("cleo.pdf"))
+    print("Done parsing PDF.")
+    print("Structuring values...")
     structured_values = get_structured_values(result)
+    print("Done structuring values.")
+    print("Getting company facts...")
     company_facts = get_company_facts(result)
+    print("Done getting company facts.")
     print("Structured Values:")
     print(structured_values)
     print("\nCompany Facts:")
