@@ -460,8 +460,7 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
                   </div>
                   <h2 className="text-2xl font-semibold">Upload your pitch deck</h2>
                   <p className="text-muted-foreground">
-                    Get considered for hundreds of opportunities
-                    with one application
+                    
                   </p>
                   <div>
                     <Button
@@ -491,13 +490,13 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
                   </div>
                   <div className="flex justify-between mt-3 text-md text-black">
                     <div className="flex-1 text-center">
-                      Upload Slide Deck <span className="text-muted-foreground">(2m)</span>
+                      Upload Slide Deck <span className="text-muted-foreground">2m</span>
                     </div>
                     <div className="flex-1 text-center">
-                      Speak with Partner <span className="text-muted-foreground">(10m)</span>
+                      Speak with Partner <span className="text-muted-foreground">10m</span>
                     </div>
                     <div className="flex-1 text-center">
-                      Complete Profile <span className="text-muted-foreground">(5m)</span>
+                      We'll get back to you <span className="text-muted-foreground">ASAP</span>
                     </div>
                   </div>
                 </div>
