@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Box, Upload, Presentation, Check } from "lucide-react";
+import { Box, Upload, Presentation, Check, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
@@ -203,13 +203,12 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto p-4 h-[80vh]">
+    <div className="w-full max-w-7xl mx-auto p-4">
       <div
         className={cn(
-          "relative rounded-lg p-12 aspect-square max-h-[80vh]",
+          "relative rounded-lg p-12",
           "flex flex-col items-center justify-center gap-4",
-          !isUploaded && "border-2 border-dashed border-muted-foreground/25",
-          isDragging && "border-primary bg-primary/5"
+          isDragging && "border-2 border-dashed border-primary bg-primary/5"
         )}
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
@@ -222,7 +221,7 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="flex flex-col items-center gap-6"
+            className="flex flex-col items-center gap-6 w-full"
           >
             {isConfirmed ? (
               <CallerInfo
@@ -261,13 +260,13 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
               </>
             ) : isUploaded && structuredData ? (
               <>
-                <h2 className="text-xl font-semibold">
+                <h2 className="text-2xl font-semibold">
                   We need to confirm some details
                 </h2>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 text-left w-full"
+                  className="mt-4 text-left max-w-xl w-full"
                 >
                   <div className="bg-card border rounded-lg shadow-sm p-6 w-full">
                     <div className="space-y-6">
@@ -455,16 +454,53 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
               </>
             ) : (
               <>
-                <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center">
-                  <Upload className="h-6 w-6 text-muted-foreground" />
+                <div className="w-full max-w-4xl mx-auto p-8 text-center space-y-6 bg-card border rounded-lg shadow-lg">
+                  <div className="mx-auto w-12 h-12 flex items-center justify-center">
+                    <FileText className="w-8 h-8 text-muted-foreground" />
+                  </div>
+                  <h2 className="text-2xl font-semibold">Upload your pitch deck</h2>
+                  <p className="text-muted-foreground">
+                    Get considered for hundreds of opportunities
+                    with one application
+                  </p>
+                  <div>
+                    <Button
+                      size="lg"
+                      variant="default"
+                      className="cursor-pointer"
+                      onClick={() => document.getElementById('file-upload')?.click()}
+                    >
+                      <Upload className="mr-2 h-4 w-4" />
+                      Upload pitch deck
+                    </Button>
+                    <input
+                      id="file-upload"
+                      type="file"
+                      className="hidden"
+                      accept=".pdf"
+                      onChange={onFileSelect}
+                    />
+                  </div>
                 </div>
-                <h2 className="text-xl font-semibold mb-2">
-                  Upload your Pitch Deck
-                </h2>
-                <p className="text-sm text-muted-foreground mb-2">
-                  Oliver Kicks will review the deck before your personalised
-                  interview
-                </p>
+                
+                <div className="w-full mt-8">
+                  <div className="flex justify-between items-center gap-4">
+                    <div className="h-4 flex-1 bg-muted rounded-full" />
+                    <div className="h-4 flex-1 bg-muted rounded-full" />
+                    <div className="h-4 flex-1 bg-muted rounded-full" />
+                  </div>
+                  <div className="flex justify-between mt-3 text-md text-black">
+                    <div className="flex-1 text-center">
+                      Upload Slide Deck <span className="text-muted-foreground">(2m)</span>
+                    </div>
+                    <div className="flex-1 text-center">
+                      Speak with Partner <span className="text-muted-foreground">(10m)</span>
+                    </div>
+                    <div className="flex-1 text-center">
+                      Complete Profile <span className="text-muted-foreground">(5m)</span>
+                    </div>
+                  </div>
+                </div>
               </>
             )}
 
@@ -476,30 +512,6 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
               >
                 {error}
               </motion.p>
-            )}
-
-            {!isUploaded && !isUploading && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                <label
-                  htmlFor="file-upload"
-                  className="cursor-pointer inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Upload className="h-4 w-4" />
-                  Upload PDF files or drag & drop
-                </label>
-
-                <input
-                  id="file-upload"
-                  type="file"
-                  className="sr-only"
-                  accept=".pdf"
-                  onChange={onFileSelect}
-                />
-              </motion.div>
             )}
           </motion.div>
         </AnimatePresence>

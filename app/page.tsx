@@ -33,6 +33,7 @@ export default function StartPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
+            className="w-full items-center justify-center"
           >
             <FileUpload onComplete={handleUploadComplete} />
           </motion.div>
