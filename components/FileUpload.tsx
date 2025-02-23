@@ -443,7 +443,7 @@ export default function FileUpload({ onComplete }: FileUploadProps) {
                   <h1 className="text-7xl mb-6 text-start font-semibold">
                     Pitch to <span className="text-primary">Concept Ventures</span><br /> with Ventro.
                   </h1>
-                  <p className="text-muted-foreground mb-8 text-xl">A chance to speak with our partners any time</p>
+                  <p className="text-muted-foreground mb-8 text-xl">Get the chance to speak with our partners any time.</p>
                   <div className="w-full mx-auto p-8 py-24 text-center space-y-6 bg-card border rounded-lg shadow-lg">
                     <div className="mx-auto w-12 h-12 flex items-center justify-center">
                       <FileText className="w-8 h-8 text-muted-foreground" />

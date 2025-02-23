@@ -111,11 +111,11 @@ export default async function StartupsPage() {
           <DialogTrigger asChild>
             <Button variant="outline" className="shadow-none rounded-lg">Configure Persona</Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle className="text-lg">Investor Persona</DialogTitle>
+              <DialogTitle className="text-xl">Investor Persona</DialogTitle>
               <DialogDescription className="text-base">
-                
+                Configure investment preferences and target metrics for your meetings.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
@@ -132,7 +132,7 @@ export default async function StartupsPage() {
               </div>
               <div className="grid gap-2">
                 <label htmlFor="knowledgebase" className="text-base font-medium">
-                  Knowledgebase URLs
+                  Knowledgebase
                 </label>
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center gap-2">
@@ -177,6 +177,17 @@ export default async function StartupsPage() {
                   className="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background"
                   placeholder="Brief description of your role and investment focus"
                   defaultValue="Partner at Concept Ventures, focusing on pre-seed investments in Games, Entertainment, and AI. Previously the firm's first employee in 2019, he serves as a Board Observer for companies like Waypoint and Eleven Labs."
+                />
+              </div>
+              <div className="grid gap-2">
+                <label htmlFor="meetingGuidance" className="text-base font-medium">
+                  Key Questions
+                </label>
+                <textarea
+                  id="meetingGuidance"
+                  className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background"
+                  placeholder="Provide guidance for startup meetings and key questions to ask"
+                  defaultValue="I like to start meetings by understanding the founder's journey and motivation. Key areas to explore: market size, competitive advantage, and go-to-market strategy. For AI companies, I focus on data moats and technical differentiation. Always end by discussing team composition and hiring plans."
                 />
               </div>
             </div>
